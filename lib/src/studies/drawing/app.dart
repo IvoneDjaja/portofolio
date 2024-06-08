@@ -10,12 +10,11 @@ class DrawingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      restorationScopeId: 'drawing_app',
-      title: 'Drawing',
-      initialRoute: homeRoute,
-      routes: <String, WidgetBuilder>{
-        homeRoute: (context) => const HomePage()
-      }
-    );
+        restorationScopeId: 'drawing_app',
+        title: 'Drawing',
+        initialRoute: homeRoute,
+        routes: <String, WidgetBuilder>{
+          homeRoute: (context) => const DrawingHomePage()
+        });
   }
 }

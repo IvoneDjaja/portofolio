@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portofolio/pages/home.dart';
 
 import 'src/app.dart';
 
@@ -20,8 +21,19 @@ class RootPage extends StatelessWidget {
 class Backdrop extends StatelessWidget {
   const Backdrop({super.key});
 
+
+  Widget _buildStack(BuildContext context, BoxConstraints constraints) {
+    return const Stack(
+      children: [
+        HomePage(),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Home'));
+    return LayoutBuilder(
+      builder: _buildStack,
+    );
   }
 }
