@@ -14,7 +14,7 @@ class PortofolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ModelBinding(
-      initialModel: GalleryOptions(
+      initialModel: const GalleryOptions(
         themeMode: ThemeMode.light,
       ),
       child: Builder(builder: (context) {

@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portofolio/main.dart';
 import 'package:portofolio/src/studies/drawing/app.dart' as drawing;
 import 'package:portofolio/src/studies/drawing/routes.dart' as drawing_routes;
+import 'package:portofolio/src/studies/rally/app.dart' as rally;
+import 'package:portofolio/src/studies/rally/routes.dart' as rally_routes;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
 class Path {
-  const Path(this.pattern, this.builder, {this.openInSecondScreen = false});
+  const Path(this.pattern, this.builder);
 
   /// A RegEx string for route matching.
   final String pattern;
@@ -14,7 +17,7 @@ class Path {
   /// The builder for the associated pattern route. The first argument is the
   /// [BuildContext] and the second argument a RegEx match if that is included
   /// in the pattern.
-  /// 
+  ///
   /// ```dart
   /// Path(
   ///   'r'^/demo/([\w-]+)$',
@@ -22,9 +25,6 @@ class Path {
   /// )
   /// ```
   final PathWidgetBuilder builder;
-
-   /// If the route should open on the second screen on foldables.
-  final bool openInSecondScreen;
 }
 
 class RouteConfiguration {
@@ -37,12 +37,14 @@ class RouteConfiguration {
     Path(
       r'^' + drawing_routes.homeRoute,
       (context, match) => const drawing.DrawingApp(),
-      openInSecondScreen: true,
+    ),
+    Path(
+      r'^' + rally_routes.homeRoute,
+      (context, match) => const rally.RallyApp(),
     ),
     Path(
       r'^/',
       (context, match) => const RootPage(),
-      openInSecondScreen: false,
     ),
   ];
 
@@ -58,11 +60,16 @@ class RouteConfiguration {
       if (regExpPattern.hasMatch(settings.name!)) {
         final firstMatch = regExpPattern.firstMatch(settings.name!)!;
         final match = (firstMatch.groupCount == 1) ? firstMatch.group(1) : null;
-        return NoAnimationMaterialPageRoute<void>(
+        if (kIsWeb) {
+          return NoAnimationMaterialPageRoute<void>(
+            builder: (context) => path.builder(context, match),
+            settings: settings,
+          );
+        }
+        return MaterialPageRoute<void>(
           builder: (context) => path.builder(context, match),
           settings: settings,
         );
-
       }
     }
     return null;
