@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portofolio/src/studies/rally/tabs/overview.dart';
 
 const int tabCount = 1;
 
@@ -58,6 +59,12 @@ class _RallyHomePageState extends State<RallyHomePage>
               ),
             ),
           ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: _buildTabViews(),
+            ),
+          )
         ],
       );
     } else {
@@ -83,11 +90,17 @@ class _RallyHomePageState extends State<RallyHomePage>
       _RallyTab(
         theme: theme,
         iconData: Icons.pie_chart,
-        title: 'Overview',
+        title: 'OVERVIEW',
         tabIndex: 0,
         tabController: _tabController,
         isVertical: isVertical,
-      )
+      ),
+    ];
+  }
+
+  List<Widget> _buildTabViews() {
+    return const [
+      OverviewView(),
     ];
   }
 }
