@@ -2,12 +2,12 @@ name: portofolio
 description: A new Flutter project.
 
 # Prevent accidental publishing to pub.dev.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ">=3.1.2 <4.0.0"
 
 dependencies:
   flutter:
@@ -15,6 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   google_fonts: ^6.2.1
+  intl: any
 
 dev_dependencies:
   flutter_test:
