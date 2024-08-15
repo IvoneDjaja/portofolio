@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:portofolio/src/studies/rally/charts/vertical_fraction_bar.dart';
 import 'package:portofolio/src/studies/rally/colors.dart';
 import 'package:portofolio/src/studies/rally/data.dart';
 import 'package:portofolio/src/studies/rally/formatters.dart';
@@ -25,6 +26,7 @@ class FinancialEntityCategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return OpenContainer(
       transitionDuration: const Duration(milliseconds: 350),
       transitionType: ContainerTransitionType.fade,
@@ -33,7 +35,61 @@ class FinancialEntityCategoryView extends StatelessWidget {
       closedColor: RallyColors.primaryBackground,
       closedElevation: 0,
       closedBuilder: (context, openContainer) {
-        return const Placeholder();
+        return TextButton(
+          onPressed: openContainer,
+          child: Column(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                child: Row(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      height: 32,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: VerticalFractionBar(
+                        color: indicatorColor,
+                        fraction: indicatorFraction,
+                      ),
+                    ),
+                    Expanded(
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                title,
+                                style: textTheme.bodyMedium!
+                                    .copyWith(fontSize: 16),
+                              ),
+                              Text(
+                                subtitle,
+                                style: textTheme.bodyMedium!
+                                    .copyWith(color: RallyColors.gray60),
+                              )
+                            ],
+                          ),
+                          Text(
+                            amount,
+                            style: textTheme.bodyLarge!.copyWith(
+                              fontSize: 20,
+                              color: RallyColors.gray,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
@@ -64,7 +120,7 @@ FinancialEntityCategoryView buildFinancialEntityFromBillData(
     suffix: const Icon(Icons.chevron_right, color: Colors.grey),
     title: model.name,
     subtitle: model.dueDate,
-    indicatorColor: RallyColors.accountColor(accountDataIndex),
+    indicatorColor: RallyColors.billColor(accountDataIndex),
     indicatorFraction: 1,
     amount: amount,
   );
@@ -82,7 +138,7 @@ FinancialEntityCategoryView buildFinancialEntityFromBudgetData(
     suffix: const Text('LEFT'),
     title: model.name,
     subtitle: '$amountUsed / $primaryAmount',
-    indicatorColor: RallyColors.accountColor(budgetDataIndex),
+    indicatorColor: RallyColors.budgetColor(budgetDataIndex),
     indicatorFraction: model.amountUsed / model.primaryAmount,
     amount: amount,
   );
@@ -128,10 +184,10 @@ List<FinancialEntityCategoryView> buildBillDataListViews(
 }
 
 List<FinancialEntityCategoryView> buildBudgetDataListViews(
-  List<BillData> items,
+  List<BudgetData> items,
 ) {
   return List<FinancialEntityCategoryView>.generate(
     items.length,
-    (i) => buildFinancialEntityFromBillData(items[i], i),
+    (i) => buildFinancialEntityFromBudgetData(items[i], i),
   );
 }

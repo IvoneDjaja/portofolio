@@ -82,7 +82,7 @@ class _OverviewGrid extends StatelessWidget {
         _FinancialView(
           title: 'Budgets',
           total: sumBudgetDataPrimaryAmount(budgetDataList),
-          financialItemViews: buildBudgetDataListViews(billDataList),
+          financialItemViews: buildBudgetDataListViews(budgetDataList),
         ),
       ]);
     });

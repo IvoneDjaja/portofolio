@@ -117,7 +117,7 @@ class DummyDataService {
   static List<AccountData> getAccountDataList() {
     return <AccountData>[
       const AccountData(
-        name: 'Checking',
+        name: 'Current',
         primaryAmount: 2215.13,
         accountNumber: '1234561234',
       ),
