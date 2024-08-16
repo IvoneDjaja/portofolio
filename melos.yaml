@@ -1,0 +1,5 @@
+name: portofolio
+
+packages:
+  - apps/**
+  - packages/**
