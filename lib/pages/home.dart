@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portofolio/constants.dart';
 import 'package:portofolio/layout/adaptive.dart';
 import 'package:portofolio/src/studies/drawing/routes.dart' as drawing_routes;
 import 'package:portofolio/src/studies/rally/routes.dart' as rally_routes;
@@ -28,6 +29,7 @@ class HomePage extends StatelessWidget {
       body: ListView(
         key: const ValueKey('HomeListView'),
         children: [
+          const _DesktopHomeItem(child: _GalleryHeader()),
           _DesktopCarousel(
             height: _carouselHeightMin,
             children: carouselCards,
@@ -35,6 +37,45 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _GalleryHeader extends StatelessWidget {
+  const _GalleryHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Header(
+      color: Theme.of(context).colorScheme.primaryContainer,
+      text: 'Gallery',
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    super.key,
+    required this.color,
+    required this.text,
+  });
+
+  final Color color;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Padding(
+            padding: const EdgeInsets.only(
+              top: kIsWeb ? 63 : 15,
+              bottom: kIsWeb ? 21 : 11,
+            ),
+            child: SelectableText(text,
+                style: Theme.of(context).textTheme.headlineMedium!.apply(
+                      color: color,
+                      fontSizeDelta: kIsWeb ? desktopDisplay1FontDelta : 0,
+                    ))));
   }
 }
 
@@ -53,10 +94,10 @@ class _DesktopCarousel extends StatefulWidget {
   final List<Widget> children;
 
   @override
-  State<_DesktopCarousel> createState() => __DesktopCarouselState();
+  State<_DesktopCarousel> createState() => _DesktopCarouselState();
 }
 
-class __DesktopCarouselState extends State<_DesktopCarousel> {
+class _DesktopCarouselState extends State<_DesktopCarousel> {
   late final ScrollController _controller;
 
   @override
@@ -173,7 +214,6 @@ class _DesktopPageButton extends StatelessWidget {
 
 class _CarouselCard extends StatelessWidget {
   const _CarouselCard({
-    super.key,
     required this.studyRoute,
   });
 
@@ -182,43 +222,67 @@ class _CarouselCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal:
-              kIsWeb ? _carouselItemDesktopMargin : _carouselItemMobileMargin,
+      padding: const EdgeInsets.symmetric(
+        horizontal:
+            kIsWeb ? _carouselItemDesktopMargin : _carouselItemMobileMargin,
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      height: _carouselHeightMin,
+      width: _carouselItemWidth,
+      child: Material(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
         ),
-        margin: const EdgeInsets.symmetric(vertical: 16.0),
-        height: _carouselHeightMin,
-        width: _carouselItemWidth,
-        child: Material(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(
+          children: [
+            const Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('Title'),
+                  Text('Subtitle'),
+                ],
+              ),
             ),
-            clipBehavior: Clip.antiAlias,
-            child: Stack(children: [
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text('Title'),
-                    Text('Subtitle'),
-                  ],
+            Positioned.fill(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .popUntil((route) => route.settings.name == '/');
+                    Navigator.of(context).restorablePushNamed(studyRoute);
+                  },
                 ),
               ),
-              Positioned.fill(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context)
-                          .popUntil((route) => route.settings.name == '/');
-                      Navigator.of(context).restorablePushNamed(studyRoute);
-                    },
-                  ),
-                ),
-              )
-            ])));
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DesktopHomeItem extends StatelessWidget {
+  const _DesktopHomeItem({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: maxHomeItemWidth),
+        padding: const EdgeInsets.symmetric(
+          horizontal: _horizontalDesktopPadding,
+        ),
+        child: child,
+      ),
+    );
   }
 }
