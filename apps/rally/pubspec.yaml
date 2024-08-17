@@ -1,5 +1,5 @@
-name: portofolio
-description: A portofolio of apps.
+name: rally
+description: Rally app.
 
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
@@ -12,11 +12,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  animations: ^2.0.2
+  google_fonts: ^6.2.1
+  intl: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  melos: ^6.0.0
+
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true

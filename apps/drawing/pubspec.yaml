@@ -1,5 +1,5 @@
-name: portofolio
-description: A portofolio of apps.
+name: drawing
+description: Drawing app.
 
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
@@ -16,7 +16,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  melos: ^6.0.0
+
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
