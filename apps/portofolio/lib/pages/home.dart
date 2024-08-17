@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart';
-import '../layout/adaptive.dart';
+import 'package:portofolio/layout/adaptive.dart';
+import '../../constants.dart';
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -63,17 +63,21 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Padding(
-            padding: const EdgeInsets.only(
-              top: kIsWeb ? 63 : 15,
-              bottom: kIsWeb ? 21 : 11,
-            ),
-            child: SelectableText(text,
-                style: Theme.of(context).textTheme.headlineMedium!.apply(
-                      color: color,
-                      fontSizeDelta: kIsWeb ? desktopDisplay1FontDelta : 0,
-                    ))));
+      alignment: AlignmentDirectional.centerStart,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: kIsWeb ? 63 : 15,
+          bottom: kIsWeb ? 21 : 11,
+        ),
+        child: SelectableText(
+          text,
+          style: Theme.of(context).textTheme.headlineMedium!.apply(
+                color: color,
+                fontSizeDelta: kIsWeb ? desktopDisplay1FontDelta : 0,
+              ),
+        ),
+      ),
+    );
   }
 }
 
