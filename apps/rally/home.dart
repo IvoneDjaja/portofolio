@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portofolio/src/studies/rally/tabs/overview.dart';
+
+import 'tabs/overview.dart';
 
 const int tabCount = 1;
 

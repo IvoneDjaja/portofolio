@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portofolio/main.dart';
-import 'package:portofolio/src/studies/drawing/app.dart' as drawing;
-import 'package:portofolio/src/studies/drawing/routes.dart' as drawing_routes;
-import 'package:portofolio/src/studies/rally/app.dart' as rally;
-import 'package:portofolio/src/studies/rally/routes.dart' as rally_routes;
+import 'main.dart';
+
+import '../drawing/app.dart' as drawing;
+import '../drawing/routes.dart' as drawing_routes;
+import '../rally/app.dart' as rally;
+import '../rally/routes.dart' as rally_routes;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 

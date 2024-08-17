@@ -1,9 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:portofolio/src/studies/rally/charts/vertical_fraction_bar.dart';
-import 'package:portofolio/src/studies/rally/colors.dart';
-import 'package:portofolio/src/studies/rally/data.dart';
-import 'package:portofolio/src/studies/rally/formatters.dart';
+
+import 'charts/vertical_fraction_bar.dart';
+import 'colors.dart';
+import 'data.dart';
+import 'formatters.dart';
 
 /// A reusable widget to show balance information of a single entity as a card.
 class FinancialEntityCategoryView extends StatelessWidget {

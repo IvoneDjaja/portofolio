@@ -2,10 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portofolio/src/studies/rally/colors.dart';
-import 'package:portofolio/src/studies/rally/data.dart';
-import 'package:portofolio/src/studies/rally/finance.dart';
-import 'package:portofolio/src/studies/rally/formatters.dart';
+
+import '../colors.dart';
+import '../data.dart';
+import '../finance.dart';
+import '../formatters.dart';
 
 class OverviewView extends StatelessWidget {
   const OverviewView({super.key});

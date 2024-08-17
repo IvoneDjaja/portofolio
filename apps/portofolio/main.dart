@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portofolio/pages/home.dart';
-
-import 'src/app.dart';
+import 'app.dart';
+import 'pages/home.dart';
 
 void main() async {
   runApp(const PortofolioApp());
@@ -20,7 +19,6 @@ class RootPage extends StatelessWidget {
 
 class Backdrop extends StatelessWidget {
   const Backdrop({super.key});
-
 
   Widget _buildStack(BuildContext context, BoxConstraints constraints) {
     return const Stack(

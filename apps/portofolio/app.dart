@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:portofolio/data/gallery_options.dart';
-import 'package:portofolio/routes.dart';
-import 'package:portofolio/themes/gallery_theme_data.dart';
+import 'data/gallery_options.dart';
+import 'routes.dart';
+import 'themes/gallery_theme_data.dart';
 
 /// The Widget that configures your application.
 class PortofolioApp extends StatelessWidget {

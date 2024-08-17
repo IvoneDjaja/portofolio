@@ -9,8 +9,8 @@ class DrawingHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Drawing'),
       ),
-      body: Center(
-        child: const Text('Draw'),
+      body: const Center(
+        child: Text('Draw'),
       ),
     );
   }
