@@ -8,7 +8,7 @@
             "name": "Web",
             "request": "launch",
             "type": "dart",
-            "program": "apps/portofolio/main.dart",
+            "program": "apps/portofolio/lib/main.dart",
             "args": [
                 "--web-port=1234",
             ]
