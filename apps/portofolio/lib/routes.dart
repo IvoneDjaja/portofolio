@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
 
 // import '../drawing/app.dart' as drawing;
 // import '../drawing/routes.dart' as drawing_routes;

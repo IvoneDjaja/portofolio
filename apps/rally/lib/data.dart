@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'formatters.dart';
+import '../formatters.dart';
 
 /// Calculates the sum of the primary amounts of a list of [AccountData].
 double sumAccountDataPrimaryAmount(List<AccountData> items) =>

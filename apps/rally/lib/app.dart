@@ -1,10 +1,11 @@
-import 'colors.dart';
-import 'home.dart';
+import 'package:rally/layout/letter_spacing.dart';
+
+import '../colors.dart';
+import '../home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../portofolio/layout/letter_spacing.dart';
-import 'routes.dart' as routes;
+import '../routes.dart' as routes;
 
 class RallyApp extends StatelessWidget {
   const RallyApp({super.key});
