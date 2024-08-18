@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portofolio/data/demos.dart';
 import 'package:portofolio/layout/adaptive.dart';
 import 'package:transparent_image/transparent_image.dart';
 import '../../constants.dart';
+import 'package:rally/colors.dart' as rally;
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -16,11 +18,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final studyDemos = Demos.studies();
     final carouselCards = <Widget>[
-      const _CarouselCard(
+      _CarouselCard(
+        demo: studyDemos['drawing'],
         studyRoute: '/drawing',
       ),
-      const _CarouselCard(
+      _CarouselCard(
+        demo: studyDemos['rally'],
+        textColor: rally.RallyColors.accountColors[0],
         studyRoute: '/rally',
         asset: const AssetImage(
           'assets/studies/rally_card.png',
@@ -221,15 +227,20 @@ class _DesktopPageButton extends StatelessWidget {
 
 class _CarouselCard extends StatelessWidget {
   const _CarouselCard({
+    required this.demo,
     required this.studyRoute,
     this.asset,
+    this.textColor,
   });
 
+  final GalleryDemo? demo;
   final String studyRoute;
   final ImageProvider? asset;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal:
@@ -254,14 +265,24 @@ class _CarouselCard extends StatelessWidget {
                 height: _carouselHeightMin,
                 fadeInDuration: entranceAnimationDuration,
               ),
-            const Padding(
+            Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('Title'),
-                  Text('Subtitle'),
+                  Text(
+                    demo!.title,
+                    style: textTheme.bodySmall!.apply(color: textColor),
+                    maxLines: 3,
+                    overflow: TextOverflow.visible,
+                  ),
+                  Text(
+                    demo!.subtitle,
+                    style: textTheme.labelSmall!.apply(color: textColor),
+                    maxLines: 5,
+                    overflow: TextOverflow.visible,
+                  ),
                 ],
               ),
             ),
