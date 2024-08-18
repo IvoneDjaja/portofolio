@@ -18,6 +18,10 @@ dependencies:
   intl: any
 
 dev_dependencies:
+  drawing:
+    path: ../drawing
+  rally:
+    path: ../rally
   flutter_test:
     sdk: flutter
 

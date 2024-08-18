@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:portofolio/routes.dart';
 import '../data/gallery_options.dart';
-import '../main.dart';
 import '../themes/gallery_theme_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -49,12 +49,11 @@ class PortofolioApp extends StatelessWidget {
           themeMode: options.themeMode,
           theme: GalleryThemeData.lightThemeData,
           darkTheme: GalleryThemeData.darkThemeData,
-          home: const RootPage(),
 
-          // // Define a function to handle named routes in order to support
-          // // Flutter web url navigation and deep linking.
-          // onGenerateRoute: (settings) =>
-          //     RouteConfiguration.onGenerateRoute(settings),
+          // Define a function to handle named routes in order to support
+          // Flutter web url navigation and deep linking.
+          onGenerateRoute: (settings) =>
+              RouteConfiguration.onGenerateRoute(settings),
         );
       }),
     );

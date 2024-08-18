@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'routes.dart' as routes;
+import '../home.dart';
+import '../routes.dart' as routes;
 
 class DrawingApp extends StatelessWidget {
   const DrawingApp({super.key});
