@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:portofolio/layout/adaptive.dart';
+import 'package:transparent_image/transparent_image.dart';
 import '../../constants.dart';
 
 const _horizontalPadding = 32.0;
@@ -21,7 +22,11 @@ class HomePage extends StatelessWidget {
       ),
       const _CarouselCard(
         studyRoute: '/rally',
-      )
+        asset: const AssetImage(
+          'assets/studies/rally_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+      ),
     ];
     return Scaffold(
       body: ListView(
@@ -217,9 +222,11 @@ class _DesktopPageButton extends StatelessWidget {
 class _CarouselCard extends StatelessWidget {
   const _CarouselCard({
     required this.studyRoute,
+    this.asset,
   });
 
   final String studyRoute;
+  final ImageProvider? asset;
 
   @override
   Widget build(BuildContext context) {
@@ -239,6 +246,14 @@ class _CarouselCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Stack(
           children: [
+            if (asset != null)
+              FadeInImage(
+                image: asset!,
+                placeholder: MemoryImage(kTransparentImage),
+                fit: BoxFit.cover,
+                height: _carouselHeightMin,
+                fadeInDuration: entranceAnimationDuration,
+              ),
             const Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
               child: Column(
