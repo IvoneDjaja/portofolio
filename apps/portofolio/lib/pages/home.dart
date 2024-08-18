@@ -20,10 +20,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final studyDemos = Demos.studies();
     final carouselCards = <Widget>[
-      _CarouselCard(
-        demo: studyDemos['drawing'],
-        studyRoute: '/drawing',
-      ),
+      // _CarouselCard(
+      //   demo: studyDemos['drawing'],
+      //   studyRoute: '/drawing',
+      // ),
       _CarouselCard(
         demo: studyDemos['rally'],
         textColor: rally.RallyColors.accountColors[0],
@@ -32,6 +32,10 @@ class HomePage extends StatelessWidget {
           'assets/studies/rally_card.png',
           package: 'flutter_gallery_assets',
         ),
+      ),
+      _CarouselCard(
+        demo: studyDemos['material'],
+        studyRoute: '/material',
       ),
     ];
     return Scaffold(

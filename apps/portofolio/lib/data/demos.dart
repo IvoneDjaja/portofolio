@@ -18,6 +18,10 @@ class Demos {
         title: 'Rally',
         subtitle: 'A personal finance app',
       ),
+      'material': GalleryDemo(
+        title: 'Material 3',
+        subtitle: 'A material 3 demo',
+      ),
     };
   }
 }

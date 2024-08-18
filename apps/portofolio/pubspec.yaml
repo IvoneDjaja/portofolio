@@ -21,6 +21,8 @@ dependencies:
 dev_dependencies:
   drawing:
     path: ../drawing
+  material_3_demo:
+    path: ../material_3_demo
   rally:
     path: ../rally
   flutter_test:
