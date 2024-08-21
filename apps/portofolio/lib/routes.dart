@@ -4,10 +4,12 @@ import 'package:portofolio/main.dart';
 
 import 'package:drawing/app.dart' as drawing;
 import 'package:drawing/routes.dart' as drawing_routes;
-import 'package:rally/app.dart' as rally;
-import 'package:rally/routes.dart' as rally_routes;
+import 'package:gorouter/app.dart' as go_router;
+import 'package:gorouter/routes.dart' as go_router_routes;
 import 'package:material_3_demo/main.dart' as material_3_demo;
 import 'package:material_3_demo/routes.dart' as material_3_demo_routes;
+import 'package:rally/app.dart' as rally;
+import 'package:rally/routes.dart' as rally_routes;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -40,6 +42,10 @@ class RouteConfiguration {
     Path(
       r'^' + drawing_routes.homeRoute,
       (context, match) => const drawing.DrawingApp(),
+    ),
+    Path(
+      r'^' + rally_routes.homeRoute,
+      (context, match) => const rally.RallyApp(),
     ),
     Path(
       r'^' + material_3_demo_routes.homeRoute,

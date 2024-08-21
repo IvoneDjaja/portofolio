@@ -21,12 +21,14 @@ dependencies:
 dev_dependencies:
   drawing:
     path: ../drawing
+  flutter_test:
+    sdk: flutter
+  gorouter:
+    path: ../gorouter
   material_3_demo:
     path: ../material_3_demo
   rally:
     path: ../rally
-  flutter_test:
-    sdk: flutter
 
   flutter_lints: ^2.0.0
 

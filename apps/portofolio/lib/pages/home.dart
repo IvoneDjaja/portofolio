@@ -37,6 +37,10 @@ class HomePage extends StatelessWidget {
         demo: studyDemos['material'],
         studyRoute: '/material',
       ),
+      _CarouselCard(
+        demo: studyDemos['gorouter'],
+        studyRoute: '/gorouter',
+      ),
     ];
     return Scaffold(
       body: ListView(

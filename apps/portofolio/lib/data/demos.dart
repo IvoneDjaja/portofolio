@@ -20,7 +20,11 @@ class Demos {
       ),
       'material': GalleryDemo(
         title: 'Material 3',
-        subtitle: 'A material 3 demo',
+        subtitle: 'A Material 3 demo',
+      ),
+      'gorouter': GalleryDemo(
+        title: 'Go Router',
+        subtitle: 'A GoRouter demo',
       ),
     };
   }
