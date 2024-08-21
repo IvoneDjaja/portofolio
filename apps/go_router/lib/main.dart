@@ -9,6 +9,14 @@ final _router = GoRouter(
       path: '/',
       builder: (context, state) => ParentScreen(),
     ),
+    GoRoute(
+      path: '/sibling',
+      builder: (context, state) => SiblingScreen(),
+    ),
+    GoRoute(
+      path: '/sibling/:siblingID',
+      builder: (context, state) => SiblingWithParamScreen(),
+    ),
   ],
 );
 
@@ -36,6 +44,32 @@ class ParentScreen extends StatelessWidget {
     return Scaffold(
         body: Center(
           child: Text('I am a parent screen'),
+        ),
+      );
+  }
+}
+
+class SiblingScreen extends StatelessWidget {
+  const SiblingScreen({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+          child: Text('I am a sibling screen'),
+        ),
+      );
+  }
+}
+
+class SiblingWithParamScreen extends StatelessWidget {
+  const SiblingWithParamScreen({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+          child: Text('I am a sibling with param screen'),
         ),
       );
   }
