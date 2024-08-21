@@ -5,7 +5,7 @@ import 'package:gorouter/app.dart';
 void main() {
   runApp(
     const ProviderScope(
-      child: MyApp(),
+      child: GoRouterApp(),
     ),
   );
 }

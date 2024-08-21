@@ -58,8 +58,8 @@ class Counter extends Notifier<int> {
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GoRouterApp extends StatelessWidget {
+  const GoRouterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
