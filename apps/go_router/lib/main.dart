@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // GoRouter configuration
 
@@ -11,6 +12,14 @@ final ValueNotifier<RoutingConfig> myRoutingConfig =
       GoRoute(
         path: '/',
         builder: (_, __) => ParentScreen(),
+        routes: [
+          GoRoute(
+            path: 'child',
+            builder: (context, state) {
+              return ChildScreen();
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: '/sibling',
@@ -34,8 +43,27 @@ final ValueNotifier<RoutingConfig> myRoutingConfig =
 
 final _router = GoRouter.routingConfig(routingConfig: myRoutingConfig);
 
+/// Providers are declared globally and specify how to create a state
+final counterProvider = NotifierProvider<Counter, int>(Counter.new);
+
+class Counter extends Notifier<int> {
+  @override
+  int build() {
+    // Inside "build", we return the initial state of the counter.
+    return 0;
+  }
+
+  void increment() {
+    state++;
+  }
+}
+
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -50,14 +78,57 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ParentScreen extends StatelessWidget {
+class ParentScreen extends ConsumerWidget {
   const ParentScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(counterProvider);
     return Scaffold(
       body: Center(
-        child: Text('I am a parent screen'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('I am a parent screen'),
+            Text('Count: $count'),
+            TextButton(
+              child: Text('Increase counter'),
+              onPressed: () => ref.read(counterProvider.notifier).increment(),
+            ),
+            TextButton(
+              child: Text('Go to child screen'),
+              onPressed: () => context.go('/child'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ChildScreen extends ConsumerWidget {
+  const ChildScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(counterProvider);
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('I am a child screen'),
+            Text('Count: $count'),
+            TextButton(
+              child: Text('Increase counter'),
+              onPressed: () => ref.read(counterProvider.notifier).increment(),
+            ),
+            TextButton(
+              child: Text('Go back'),
+              onPressed: () => context.pop(),
+            )
+          ],
+        ),
       ),
     );
   }

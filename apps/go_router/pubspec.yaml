@@ -1,0 +1,31 @@
+name: gorouter
+description: Go Router app.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.1.2 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.2.6
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  riverpod_generator: ^2.4.2
+  riverpod_lint: ^2.3.12
+
+flutter:
+  uses-material-design: true
+
+   # Enable generation of localized Strings from arb files.
+  generate: true
