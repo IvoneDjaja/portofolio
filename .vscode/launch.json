@@ -5,13 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Web",
+            "name": "Go router (debug)",
+            "cwd": "apps/go_router",
             "request": "launch",
             "type": "dart",
-            "program": "apps/portofolio/lib/main.dart",
-            "args": [
-                "--web-port=1234",
-            ]
+            "program": "lib/main.dart",
+            "flutterMode": "debug",
         },
     ]
 }
