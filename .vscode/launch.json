@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Go router (debug)",
-            "cwd": "apps/go_router",
+            "name": "Portofolio (debug)",
+            "cwd": "apps/portofolio",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
