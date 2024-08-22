@@ -3,9 +3,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gorouter/app.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: GoRouterApp(),
-    ),
-  );
+  runApp(GoRouterApp());
 }
