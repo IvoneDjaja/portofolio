@@ -1,4 +1,5 @@
-name: widgetbook
+# Avoid naming conflict by changing widgetbook to widgetbook_workspace
+name: widgetbook_workspace
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -7,13 +8,19 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  widgetbook_demo:
+    path: ../
   flutter:
     sdk: flutter
+  widgetbook: ^3.8.1
+  widgetbook_annotation: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  widgetbook_generator: ^3.8.0
+  build_runner: ^2.4.12
 
 flutter:
   uses-material-design: true
