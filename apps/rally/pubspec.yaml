@@ -18,6 +18,8 @@ dependencies:
   intl: any
 
 dev_dependencies:
+  portofolio:
+    path: ../portofolio
   flutter_test:
     sdk: flutter
 

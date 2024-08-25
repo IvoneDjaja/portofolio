@@ -101,7 +101,7 @@ class _RallyHomePageState extends State<RallyHomePage>
 
   List<Widget> _buildTabViews() {
     return const [
-      OverviewView(),
+      DemoPage(slug: 'rally'),
     ];
   }
 }

@@ -10,6 +10,7 @@ import 'package:material_3_demo/main.dart' as material_3_demo;
 import 'package:material_3_demo/routes.dart' as material_3_demo_routes;
 import 'package:rally/app.dart' as rally;
 import 'package:rally/routes.dart' as rally_routes;
+import 'package:rally/tabs/overview.dart' as rally_overview;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -51,9 +52,15 @@ class RouteConfiguration {
       r'^' + material_3_demo_routes.homeRoute,
       (context, match) => const material_3_demo.App(),
     ),
+    // Path(
+    //   r'^' + rally_routes.homeRoute,
+    //   (context, match) => rally_overview.DemoPage(
+    //     slug: match,
+    //   ),
+    // ),
     Path(
       r'^' + rally_routes.homeRoute,
-      (context, match) => const rally.RallyApp(),
+      (context, match) => rally.RallyApp(slug: match),
     ),
     Path(
       r'^/',

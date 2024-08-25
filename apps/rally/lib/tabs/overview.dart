@@ -2,26 +2,175 @@ import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:rally/pages/demo.dart';
+
+import 'package:rally/data/demos.dart';
+import 'package:flutter/foundation.dart';
+import 'package:rally/codeviewer/code_displayer.dart';
+import 'package:rally/codeviewer/code_style.dart';
 
 import '../colors.dart';
 import '../data.dart';
 import '../finance.dart';
 import '../formatters.dart';
 
+enum _DemoState {
+  code,
+}
+
+class DemoPage extends StatefulWidget {
+  const DemoPage({
+    super.key,
+    required this.slug,
+  });
+
+  static const String baseRoute = '/demo';
+  final String? slug;
+
+  @override
+  State<DemoPage> createState() => _DemoPageState();
+}
+
+class _DemoPageState extends State<DemoPage> {
+  late Map<String?, GalleryDemo> slugToDemoMap;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // To make sure that we do not rebuild the map for every update to the demo
+    // page, we save it in a variable. The cost of running `slugToDemo` is
+    // still only close to constant, as it's just iterating over all of the
+    // demos.
+    slugToDemoMap = Demos.asSlugToDemoMap();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.slug == null || !slugToDemoMap.containsKey(widget.slug)) {
+      Navigator.of(context).pop();
+    }
+    return ScaffoldMessenger(
+        child: GalleryDemoPage(demo: slugToDemoMap[widget.slug]!));
+  }
+}
+
+class GalleryDemoPage extends StatefulWidget {
+  const GalleryDemoPage({
+    super.key,
+    required this.demo,
+  });
+
+  final GalleryDemo demo;
+
+  @override
+  State<GalleryDemoPage> createState() => _GalleryDemoPageState();
+}
+
+class _GalleryDemoPageState extends State<GalleryDemoPage> {
+  // final RestorableInt _configIndex = RestorableInt(0);
+
+  GalleryDemoConfiguration get _currentConfig {
+    // return widget.demo.configurations[_configIndex.value];
+    return widget.demo.configurations.first;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final contentHeight = mediaQuery.size.height -
+        mediaQuery.padding.top -
+        mediaQuery.padding.bottom;
+    final codeTheme = GoogleFonts.robotoMono(
+      fontSize: 12,
+    );
+    final maxSectionHeight = kIsWeb ? contentHeight : contentHeight - 64;
+    return CodeStyle(
+        baseStyle: codeTheme.copyWith(color: const Color(0xFFFAFBFB)),
+        numberStyle: codeTheme.copyWith(color: const Color(0xFFBD93F9)),
+        commentStyle: codeTheme.copyWith(color: const Color(0xFF808080)),
+        keywordStyle: codeTheme.copyWith(color: const Color(0xFF1CDEC9)),
+        stringStyle: codeTheme.copyWith(color: const Color(0xFFFFA65C)),
+        punctuationStyle: codeTheme.copyWith(color: const Color(0xFF8BE9FD)),
+        classStyle: codeTheme.copyWith(color: const Color(0xFFD65BAD)),
+        constantStyle: codeTheme.copyWith(color: const Color(0xFFFF8383)),
+        child: _DemoSectionCode(
+            maxHeight: maxSectionHeight,
+            codeWidget: CodeDisplayPage(
+              _currentConfig.code,
+            )));
+  }
+}
+
+class CodeDisplayPage extends StatelessWidget {
+  const CodeDisplayPage(this.code, {super.key});
+
+  final CodeDisplayer code;
+
+  @override
+  Widget build(BuildContext context) {
+    final richTextCode = code(context);
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: SelectableText.rich(
+              richTextCode,
+              textDirection: TextDirection.ltr,
+            )),
+      ),
+    );
+  }
+}
+
+class _DemoSectionCode extends StatelessWidget {
+  const _DemoSectionCode({
+    super.key,
+    this.maxHeight,
+    this.codeWidget,
+  });
+
+  final double? maxHeight;
+  final Widget? codeWidget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          height: maxHeight,
+          child: codeWidget,
+        ));
+  }
+}
+
 class OverviewView extends StatelessWidget {
   const OverviewView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final contentHeight = mediaQuery.size.height -
+        mediaQuery.padding.top -
+        mediaQuery.padding.bottom;
+    final maxSectionHeight = kIsWeb ? contentHeight : contentHeight - 64;
+
     if (kIsWeb) {
-      return const SingleChildScrollView(
+      return SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 24),
           child: Row(children: [
-            Flexible(
-              flex: 7,
-              child: _OverviewGrid(spacing: 24),
-            ),
+            // Flexible(
+            //     flex: 7,
+            //     child:
+            //         _OverviewGrid(spacing: 24),
+            //         DemoSectionCode(
+            //       maxHeight: maxSectionHeight,
+            //       codeWidget: CodeDisplayPage(
+            //         _currentConfig.code,
+            //       ),
+            //     )),
             SizedBox(width: 24),
             Flexible(
               flex: 3,

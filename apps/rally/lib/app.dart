@@ -1,5 +1,4 @@
 import 'package:rally/layout/letter_spacing.dart';
-
 import '../colors.dart';
 import '../home.dart';
 import 'package:flutter/material.dart';
@@ -7,20 +6,24 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../routes.dart' as routes;
 
+// BEGIN RallyApp
 class RallyApp extends StatelessWidget {
-  const RallyApp({super.key});
+  const RallyApp({
+    super.key,
+    required this.slug,
+  });
 
   static const String homeRoute = routes.homeRoute;
-
+  final String? slug;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         restorationScopeId: 'rally_app',
         title: 'Rally',
-        initialRoute: homeRoute,
+        initialRoute: RallyApp.homeRoute,
         theme: _buildRallyTheme(),
         routes: <String, WidgetBuilder>{
-          homeRoute: (context) => const RallyHomePage()
+          RallyApp.homeRoute: (context) => const RallyHomePage()
         });
   }
 
@@ -78,3 +81,4 @@ class RallyApp extends StatelessWidget {
         );
   }
 }
+// END

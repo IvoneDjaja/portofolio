@@ -10,9 +10,11 @@ environment:
   sdk: ">=3.1.2 <4.0.0"
 
 dependencies:
+  args: ^2.5.0
   flutter:
     sdk: flutter
   go_router: ^14.2.6
+  grinder: ^0.9.5
 
 dev_dependencies:
   flutter_test:

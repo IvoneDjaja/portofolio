@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:rally/codeviewer/code_displayer.dart';
+
 class GalleryDemo {
   const GalleryDemo({
     required this.title,
