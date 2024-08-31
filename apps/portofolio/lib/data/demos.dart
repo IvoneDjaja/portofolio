@@ -26,6 +26,11 @@ class Demos {
         title: 'Go Router',
         subtitle: 'A GoRouter demo',
       ),
+      'widgetbook': GalleryDemo(
+        title: 'Widgetbook',
+        subtitle:
+            'Widgetbook\'s open-source package allows you to catalog widgets in one central widget library or design system.',
+      )
     };
   }
 }

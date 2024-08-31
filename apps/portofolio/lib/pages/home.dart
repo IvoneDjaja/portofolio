@@ -4,7 +4,12 @@ import 'package:portofolio/data/demos.dart';
 import 'package:portofolio/layout/adaptive.dart';
 import 'package:transparent_image/transparent_image.dart';
 import '../../constants.dart';
-import 'package:rally/colors.dart' as rally;
+import 'package:rally/colors.dart' as rally_colors;
+import 'package:rally/routes.dart' as rally_routes;
+import 'package:gorouter/routes.dart' as gorouter_routes;
+import 'package:material_3_demo/routes.dart' as material_3_demo_routes;
+import 'package:widgetbook_workspace/routes.dart'
+    as widgetbook_workspace_routes;
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -22,12 +27,12 @@ class HomePage extends StatelessWidget {
     final carouselCards = <Widget>[
       // _CarouselCard(
       //   demo: studyDemos['drawing'],
-      //   studyRoute: '/drawing',
+      //   studyRoute: '/${drawing_routes.homeRoute}',
       // ),
       _CarouselCard(
         demo: studyDemos['rally'],
-        textColor: rally.RallyColors.accountColors[0],
-        studyRoute: '/rally',
+        textColor: rally_colors.RallyColors.accountColors[0],
+        studyRoute: '/${rally_routes.homeRoute}',
         asset: const AssetImage(
           'assets/studies/rally_card.png',
           package: 'flutter_gallery_assets',
@@ -35,11 +40,15 @@ class HomePage extends StatelessWidget {
       ),
       _CarouselCard(
         demo: studyDemos['material'],
-        studyRoute: '/material',
+        studyRoute: '/${material_3_demo_routes.homeRoute}',
       ),
       _CarouselCard(
         demo: studyDemos['gorouter'],
-        studyRoute: '/gorouter',
+        studyRoute: '/${gorouter_routes.homeRoute}',
+      ),
+      _CarouselCard(
+        demo: studyDemos['widgetbook'],
+        studyRoute: '/${widgetbook_workspace_routes.homeRoute}',
       ),
     ];
     return Scaffold(

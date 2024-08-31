@@ -29,6 +29,8 @@ dev_dependencies:
     path: ../material_3_demo
   rally:
     path: ../rally
+  widgetbook_workspace:
+    path: ../widgetbook_demo/widgetbook
 
   flutter_lints: ^2.0.0
 

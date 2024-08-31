@@ -10,6 +10,9 @@ import 'package:material_3_demo/main.dart' as material_3_demo;
 import 'package:material_3_demo/routes.dart' as material_3_demo_routes;
 import 'package:rally/app.dart' as rally;
 import 'package:rally/routes.dart' as rally_routes;
+import 'package:widgetbook_workspace/app.dart' as widgetbook_workspace;
+import 'package:widgetbook_workspace/routes.dart'
+    as widgetbook_workspace_routes;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -54,6 +57,10 @@ class RouteConfiguration {
     Path(
       r'^' + rally_routes.homeRoute,
       (context, match) => const rally.RallyApp(),
+    ),
+    Path(
+      r'^/' + widgetbook_workspace_routes.homeRoute,
+      (context, match) => const widgetbook_workspace.WidgetbookApp(),
     ),
     Path(
       r'^/',
