@@ -10,6 +10,7 @@ import 'package:gorouter/routes.dart' as gorouter_routes;
 import 'package:material_3_demo/routes.dart' as material_3_demo_routes;
 import 'package:widgetbook_workspace/routes.dart'
     as widgetbook_workspace_routes;
+import 'package:scrolling/routes.dart' as scrolling_routes;
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -49,6 +50,10 @@ class HomePage extends StatelessWidget {
       _CarouselCard(
         demo: studyDemos['widgetbook'],
         studyRoute: '/${widgetbook_workspace_routes.homeRoute}',
+      ),
+      _CarouselCard(
+        demo: studyDemos['scrolling'],
+        studyRoute: '/${scrolling_routes.homeRoute}',
       ),
     ];
     return Scaffold(

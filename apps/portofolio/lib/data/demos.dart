@@ -30,7 +30,11 @@ class Demos {
         title: 'Widgetbook',
         subtitle:
             'Widgetbook\'s open-source package allows you to catalog widgets in one central widget library or design system.',
-      )
+      ),
+      'scrolling': GalleryDemo(
+        title: 'Scrolling',
+        subtitle: 'A scrolling demo',
+      ),
     };
   }
 }

@@ -13,6 +13,8 @@ import 'package:rally/routes.dart' as rally_routes;
 import 'package:widgetbook_workspace/app.dart' as widgetbook_workspace;
 import 'package:widgetbook_workspace/routes.dart'
     as widgetbook_workspace_routes;
+import 'package:scrolling/routes.dart' as scrolling_routes;
+import 'package:scrolling/app.dart' as scrolling;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -61,6 +63,10 @@ class RouteConfiguration {
     Path(
       r'^/' + widgetbook_workspace_routes.homeRoute,
       (context, match) => const widgetbook_workspace.WidgetbookApp(),
+    ),
+    Path(
+      r'^/' + scrolling_routes.homeRoute,
+      (context, match) => const scrolling.ScrollingApp(),
     ),
     Path(
       r'^/',

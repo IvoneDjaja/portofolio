@@ -31,6 +31,8 @@ dev_dependencies:
     path: ../rally
   widgetbook_workspace:
     path: ../widgetbook_demo/widgetbook
+  scrolling: 
+    path: ../scrolling
 
   flutter_lints: ^2.0.0
 
