@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomScrollViewApp extends StatelessWidget {
-  const CustomScrollViewApp();
+class CustomScrollViewExample1App extends StatelessWidget {
+  const CustomScrollViewExample1App();
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +34,17 @@ class CustomScrollViewApp extends StatelessWidget {
             ),
           ),
           SliverFixedExtentList(
-              itemExtent: 50,
-              delegate: SliverChildBuilderDelegate((context, index) {
+            itemExtent: 50,
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
                 return Container(
                   alignment: Alignment.center,
                   color: Colors.lightBlue[100 * (index % 9)],
                   child: Text('List Item $index'),
                 );
-              }))
+              },
+            ),
+          ),
         ],
       ),
     );

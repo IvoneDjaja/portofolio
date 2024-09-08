@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:scrolling/pages/custom_scrolling_view_app.dart';
+import 'package:scrolling/pages/custom_scrolling_view_example_1_app.dart';
+import 'package:scrolling/pages/custom_scrolling_view_example_2_app.dart';
+import 'package:scrolling/pages/draggable_scrollable_sheet_example_app.dart';
 
 class PageViewExampleApp extends StatelessWidget {
   const PageViewExampleApp({super.key});
@@ -56,13 +58,9 @@ class _PageViewExampleState extends State<PageViewExample>
           controller: _pageViewController,
           onPageChanged: _handlePageViewChanged,
           children: <Widget>[
-            CustomScrollViewApp(),
-            Center(
-              child: Text('Second Page', style: textTheme.titleLarge),
-            ),
-            Center(
-              child: Text('Third Page', style: textTheme.titleLarge),
-            ),
+            CustomScrollViewExample1App(),
+            CustomScrollViewExample2App(),
+            DraggableScrollableSheetExampleApp(),
           ],
         ),
         PageIndicator(
