@@ -38,17 +38,19 @@ class _DraggableScrollableSheetExampleAppState
                 });
               }),
               Flexible(
-                  child: ListView.builder(
-                      controller: kIsWeb ? null : scrollController,
-                      itemCount: 25,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(
-                            'Item $index',
-                            style: TextStyle(color: colorScheme.surface),
-                          ),
-                        );
-                      }))
+                child: ListView.builder(
+                  controller: kIsWeb ? null : scrollController,
+                  itemCount: 25,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        'Item $index',
+                        style: TextStyle(color: colorScheme.surface),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         );

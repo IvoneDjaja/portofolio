@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scrolling/pages/custom_scrolling_view_example_1_app.dart';
 import 'package:scrolling/pages/custom_scrolling_view_example_2_app.dart';
 import 'package:scrolling/pages/draggable_scrollable_sheet_example_app.dart';
+import 'package:scrolling/pages/nested_scroll_view_example_app.dart';
 
 class PageViewExampleApp extends StatelessWidget {
   const PageViewExampleApp({super.key});
@@ -35,7 +36,7 @@ class _PageViewExampleState extends State<PageViewExample>
   void initState() {
     super.initState();
     _pageViewController = PageController();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -47,8 +48,6 @@ class _PageViewExampleState extends State<PageViewExample>
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-
     return Stack(
       alignment: Alignment.bottomCenter,
       children: <Widget>[
@@ -58,6 +57,7 @@ class _PageViewExampleState extends State<PageViewExample>
           controller: _pageViewController,
           onPageChanged: _handlePageViewChanged,
           children: <Widget>[
+            NestedScrollViewExampleApp(),
             CustomScrollViewExample1App(),
             CustomScrollViewExample2App(),
             DraggableScrollableSheetExampleApp(),
