@@ -66,7 +66,7 @@ class RouteConfiguration {
     ),
     Path(
       r'^/' + scrolling_routes.homeRoute,
-      (context, match) => const scrolling.ScrollingApp(),
+      (context, match) => const scrolling.PageViewExampleApp(),
     ),
     Path(
       r'^/',
