@@ -15,6 +15,8 @@ import 'package:widgetbook_workspace/routes.dart'
     as widgetbook_workspace_routes;
 import 'package:scrolling/routes.dart' as scrolling_routes;
 import 'package:scrolling/app.dart' as scrolling;
+import 'package:design_patterns/routes.dart' as design_patterns_routes;
+import 'package:design_patterns/app.dart' as design_patterns;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -67,6 +69,10 @@ class RouteConfiguration {
     Path(
       r'^' + scrolling_routes.homeRoute,
       (context, match) => const scrolling.PageViewExampleApp(),
+    ),
+    Path(
+      r'^' + design_patterns_routes.homeRoute,
+      (context, match) => const design_patterns.DesignPatternsApp(),
     ),
     Path(
       r'^',

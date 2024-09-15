@@ -19,6 +19,8 @@ dependencies:
   transparent_image: ^2.0.1
 
 dev_dependencies:
+  design_patterns:
+    path: ../design_patterns
   drawing:
     path: ../drawing
   flutter_test:

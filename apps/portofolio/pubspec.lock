@@ -74,9 +74,9 @@ packages:
     source: hosted
     version: "1.0.8"
   design_patterns:
-    dependency: "direct overridden"
+    dependency: "direct dev"
     description:
-      path: "../design_patterns/design_patterns"
+      path: "../design_patterns"
       relative: true
     source: path
     version: "0.1.0"

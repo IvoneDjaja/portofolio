@@ -35,6 +35,10 @@ class Demos {
         title: 'Scrolling',
         subtitle: 'A scrolling demo',
       ),
+      'design_patterns': GalleryDemo(
+        title: 'Design patterns',
+        subtitle: '',
+      )
     };
   }
 }
