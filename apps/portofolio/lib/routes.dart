@@ -61,15 +61,15 @@ class RouteConfiguration {
       (context, match) => const rally.RallyApp(),
     ),
     Path(
-      r'^/' + widgetbook_workspace_routes.homeRoute,
+      r'^' + widgetbook_workspace_routes.homeRoute,
       (context, match) => const widgetbook_workspace.WidgetbookApp(),
     ),
     Path(
-      r'^/' + scrolling_routes.homeRoute,
+      r'^' + scrolling_routes.homeRoute,
       (context, match) => const scrolling.PageViewExampleApp(),
     ),
     Path(
-      r'^/',
+      r'^',
       (context, match) => const RootPage(),
     ),
   ];

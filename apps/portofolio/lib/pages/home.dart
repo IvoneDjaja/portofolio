@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
       _CarouselCard(
         demo: studyDemos['rally'],
         textColor: rally_colors.RallyColors.accountColors[0],
-        studyRoute: '/${rally_routes.homeRoute}',
+        studyRoute: '${rally_routes.homeRoute}',
         asset: const AssetImage(
           'assets/studies/rally_card.png',
           package: 'flutter_gallery_assets',
@@ -41,28 +41,28 @@ class HomePage extends StatelessWidget {
       ),
       _CarouselCard(
         demo: studyDemos['material'],
-        studyRoute: '/${material_3_demo_routes.homeRoute}',
+        studyRoute: '${material_3_demo_routes.homeRoute}',
         asset: const AssetImage(
           'assets/images/material_3_card.png',
         ),
       ),
       _CarouselCard(
         demo: studyDemos['gorouter'],
-        studyRoute: '/${gorouter_routes.homeRoute}',
+        studyRoute: '${gorouter_routes.homeRoute}',
         asset: const AssetImage(
           'assets/images/go_router_card.png',
         ),
       ),
       _CarouselCard(
         demo: studyDemos['widgetbook'],
-        studyRoute: '/${widgetbook_workspace_routes.homeRoute}',
+        studyRoute: '${widgetbook_workspace_routes.homeRoute}',
         asset: const AssetImage(
           'assets/images/widgetbook_card.png',
         ),
       ),
       _CarouselCard(
         demo: studyDemos['scrolling'],
-        studyRoute: '/${scrolling_routes.homeRoute}',
+        studyRoute: '${scrolling_routes.homeRoute}',
       ),
     ];
     return Scaffold(
