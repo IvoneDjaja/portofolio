@@ -33,6 +33,8 @@ dev_dependencies:
     path: ../rally
   widgetbook_workspace:
     path: ../widgetbook_demo/widgetbook
+  riverpod_demo:
+    path: ../riverpod_demo
   scrolling: 
     path: ../scrolling
 

@@ -17,6 +17,8 @@ import 'package:scrolling/routes.dart' as scrolling_routes;
 import 'package:scrolling/app.dart' as scrolling;
 import 'package:design_patterns/routes.dart' as design_patterns_routes;
 import 'package:design_patterns/app.dart' as design_patterns;
+import 'package:riverpod_demo/routes.dart' as riverpod_demo_routes;
+import 'package:riverpod_demo/app.dart' as riverpod_demo;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -73,6 +75,10 @@ class RouteConfiguration {
     Path(
       r'^' + design_patterns_routes.homeRoute,
       (context, match) => const design_patterns.DesignPatternsApp(),
+    ),
+    Path(
+      r'^' + riverpod_demo_routes.homeRoute,
+      (context, match) => const riverpod_demo.RiverpodDemoApp(),
     ),
     Path(
       r'^',

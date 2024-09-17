@@ -38,6 +38,10 @@ class Demos {
       'design_patterns': GalleryDemo(
         title: 'Design patterns',
         subtitle: '',
+      ),
+      'riverpod': GalleryDemo(
+        title: 'Riverpod',
+        subtitle: '',
       )
     };
   }

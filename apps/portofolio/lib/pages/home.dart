@@ -12,6 +12,7 @@ import 'package:widgetbook_workspace/routes.dart'
     as widgetbook_workspace_routes;
 import 'package:scrolling/routes.dart' as scrolling_routes;
 import 'package:design_patterns/routes.dart' as design_patterns_routes;
+import 'package:riverpod_demo/routes.dart' as riverpod_demo_routes;
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -68,6 +69,10 @@ class HomePage extends StatelessWidget {
       _CarouselCard(
         demo: studyDemos['design_patterns'],
         studyRoute: '${design_patterns_routes.homeRoute}',
+      ),
+      _CarouselCard(
+        demo: studyDemos['riverpod'],
+        studyRoute: '${riverpod_demo_routes.homeRoute}',
       ),
     ];
     return Scaffold(
