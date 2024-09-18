@@ -19,6 +19,8 @@ import 'package:design_patterns/routes.dart' as design_patterns_routes;
 import 'package:design_patterns/app.dart' as design_patterns;
 import 'package:riverpod_demo/routes.dart' as riverpod_demo_routes;
 import 'package:riverpod_demo/app.dart' as riverpod_demo;
+import 'package:game/routes.dart' as game_routes;
+import 'package:game/app.dart' as game_demo;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
@@ -79,6 +81,10 @@ class RouteConfiguration {
     Path(
       r'^' + riverpod_demo_routes.homeRoute,
       (context, match) => const riverpod_demo.RiverpodDemoApp(),
+    ),
+    Path(
+      r'^' + game_routes.homeRoute,
+      (context, match) => const game_demo.GameApp(),
     ),
     Path(
       r'^',

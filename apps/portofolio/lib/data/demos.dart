@@ -42,6 +42,10 @@ class Demos {
       'riverpod': GalleryDemo(
         title: 'Riverpod',
         subtitle: '',
+      ),
+      'game': GalleryDemo(
+        title: 'Game',
+        subtitle: '',
       )
     };
   }
