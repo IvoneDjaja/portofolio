@@ -37,8 +37,8 @@ dev_dependencies:
     path: ../riverpod_demo
   scrolling: 
     path: ../scrolling
-  game:
-    path: ../game
+  klondike:
+    path: ../klondike
 
   flutter_lints: ^2.0.0
 

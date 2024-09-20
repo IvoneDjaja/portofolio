@@ -19,8 +19,8 @@ import 'package:design_patterns/routes.dart' as design_patterns_routes;
 import 'package:design_patterns/app.dart' as design_patterns;
 import 'package:riverpod_demo/routes.dart' as riverpod_demo_routes;
 import 'package:riverpod_demo/app.dart' as riverpod_demo;
-import 'package:game/routes.dart' as game_routes;
-import 'package:game/app.dart' as game_demo;
+import 'package:klondike/routes.dart' as game_routes;
+import 'package:klondike/app.dart' as game_demo;
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String?);
 
