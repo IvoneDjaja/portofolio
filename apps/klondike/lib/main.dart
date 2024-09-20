@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game/app.dart';
+import 'package:klondike/app.dart';
 
 void main() {
-  runApp(const GameApp());
+  runApp(GameApp());
 }
