@@ -2,11 +2,12 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:klondike/app.dart';
 import 'package:klondike/rank.dart';
 import 'package:klondike/suit.dart';
 
-class Card extends PositionComponent {
+class Card extends PositionComponent with DragCallbacks {
   static final Paint backBackgroundPaint = Paint()
     ..color = const Color(0xff380c02);
   static final Paint backBorderPaint1 = Paint()
@@ -193,5 +194,15 @@ class Card extends PositionComponent {
     if (rotate) {
       canvas.restore();
     }
+  }
+
+  @override
+  void onDragStart(DragStartEvent event) {
+    priority = 100;
+  }
+
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    position += event.delta;
   }
 }
