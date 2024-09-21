@@ -5,10 +5,10 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Card;
 import 'package:klondike/components/card.dart';
-import 'package:klondike/components/foundation.dart';
-import 'package:klondike/components/pile.dart';
-import 'package:klondike/components/stock.dart';
-import 'package:klondike/components/waste.dart';
+import 'package:klondike/components/foundation_pile.dart';
+import 'package:klondike/components/tableau_pile.dart';
+import 'package:klondike/components/stock_pile.dart';
+import 'package:klondike/components/waste_pile.dart';
 
 class GameApp extends StatelessWidget {
   const GameApp();
@@ -26,27 +26,31 @@ class KlondikeGame extends FlameGame {
   static const double cardGap = 175;
   static final Vector2 cardSize = Vector2(cardWidth, cardHeight);
   static const double cardRadius = 100.0;
+  static final cardRRect = RRect.fromRectAndRadius(
+    const Rect.fromLTWH(0, 0, cardWidth, cardHeight),
+    const Radius.circular(cardRadius),
+  );
 
   @override
   Future<void> onLoad() async {
     await Flame.images.load('klondike-sprites.png');
 
-    final stock = Stock()
+    final stock = StockPile()
       ..size = cardSize
       ..position = Vector2(cardGap, cardGap);
-    final waste = Waste()
+    final waste = WastePile()
       ..size = cardSize
       ..position = Vector2(cardWidth + 2 * cardGap, cardGap);
     final foundations = List.generate(
       4,
-      (i) => Foundation()
+      (i) => FoundationPile(i)
         ..size = cardSize
         ..position =
             Vector2((i + 3) * (cardWidth + cardGap) + cardGap, cardGap),
     );
     final piles = List.generate(
       7,
-      (i) => Pile()
+      (i) => TableauPile()
         ..size = cardSize
         ..position = Vector2(
           cardGap + i * (cardWidth + cardGap),
@@ -64,16 +68,22 @@ class KlondikeGame extends FlameGame {
     camera.viewfinder.position = Vector2(cardWidth * 3.5 + cardGap * 4, 0);
     camera.viewfinder.anchor = Anchor.topCenter;
 
-    final random = Random();
+    final cards = [
+      for (var rank = 1; rank <= 13; rank++)
+        for (var suit = 0; suit < 4; suit++) Card(rank, suit)
+    ];
+    cards.shuffle();
+    world.addAll(cards);
+
+    int cardToDeal = cards.length - 1;
     for (var i = 0; i < 7; i++) {
-      for (var j = 0; j < 4; j++) {
-        final card = Card(random.nextInt(13) + 1, random.nextInt(4))
-          ..position = Vector2(100 + i * 1150, 100 + j * 1500)
-          ..addToParent(world);
-        if (random.nextDouble() < 0.9) {
-          card.flip();
-        }
+      for (var j = i; j < 7; j++) {
+        piles[j].acquireCard(cards[cardToDeal--]);
       }
+      piles[i].flipTopCard();
+    }
+    for (int n = 0; n <= cardToDeal; n++) {
+      stock.acquireCard(cards[n]);
     }
   }
 }
