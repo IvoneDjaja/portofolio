@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:klondike/app.dart';
+import 'package:klondike/components/pile.dart';
 import 'package:klondike/rank.dart';
 import 'package:klondike/suit.dart';
 
@@ -61,6 +62,7 @@ class Card extends PositionComponent with DragCallbacks {
   final Rank rank;
   final Suit suit;
   bool _faceUp;
+  Pile? pile;
 
   bool get isFaceUp => _faceUp;
   bool get isFaceDown => !_faceUp;
@@ -198,11 +200,22 @@ class Card extends PositionComponent with DragCallbacks {
 
   @override
   void onDragStart(DragStartEvent event) {
-    priority = 100;
+    if (pile?.canMoveCard(this) ?? false) {
+      super.onDragStart(event);
+      priority = 100;
+    }
   }
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    position += event.delta;
+    if (!isDragged) {
+      return;
+    }
+    position += event.localDelta;
+  }
+
+  @override
+  void onDragEnd(DragEndEvent event) {
+    super.onDragEnd(event);
   }
 }
