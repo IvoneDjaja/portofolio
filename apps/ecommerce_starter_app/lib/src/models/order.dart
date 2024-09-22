@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 
 /// Order status
 enum OrderStatus { confirmed, shipped, delivered }

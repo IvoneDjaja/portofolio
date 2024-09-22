@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/src/utils/currency_formatter.dart';
+import 'package:ecommerce_starter_app/src/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
 
 /// Text widget for showing the total price of the cart

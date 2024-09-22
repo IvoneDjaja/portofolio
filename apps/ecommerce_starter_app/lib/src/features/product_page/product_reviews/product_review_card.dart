@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/src/common_widgets/alert_dialogs.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/alert_dialogs.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/src/constants/app_sizes.dart';
-import 'package:ecommerce_app/src/features/product_page/product_reviews/product_rating_bar.dart';
-import 'package:ecommerce_app/src/models/review.dart';
-import 'package:ecommerce_app/src/utils/date_formatter.dart';
+import 'package:ecommerce_starter_app/src/constants/app_sizes.dart';
+import 'package:ecommerce_starter_app/src/features/product_page/product_reviews/product_rating_bar.dart';
+import 'package:ecommerce_starter_app/src/models/review.dart';
+import 'package:ecommerce_starter_app/src/utils/date_formatter.dart';
 
 /// Simple card widget to show a product review info (score, comment, date)
 class ProductReviewCard extends StatelessWidget {
@@ -31,7 +31,8 @@ class ProductReviewCard extends StatelessWidget {
                     showNotImplementedAlertDialog(context: context);
                   },
                 ),
-                Text(dateFormatted, style: Theme.of(context).textTheme.bodySmall),
+                Text(dateFormatted,
+                    style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
             if (review.comment.isNotEmpty) ...[

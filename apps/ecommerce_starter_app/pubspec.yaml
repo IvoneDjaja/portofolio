@@ -1,4 +1,4 @@
-name: ecommerce_app
+name: ecommerce_starter_app
 description: Flutter eCommerce app (part of the Complete Flutter Course Bundle)
 
 # Prevent accidental publishing to pub.dev.

@@ -1,12 +1,12 @@
-import 'package:ecommerce_app/src/common_widgets/alert_dialogs.dart';
-import 'package:ecommerce_app/src/constants/breakpoints.dart';
-import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/alert_dialogs.dart';
+import 'package:ecommerce_starter_app/src/constants/breakpoints.dart';
+import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/src/common_widgets/responsive_center.dart';
-import 'package:ecommerce_app/src/common_widgets/primary_button.dart';
-import 'package:ecommerce_app/src/constants/app_sizes.dart';
-import 'package:ecommerce_app/src/features/product_page/product_reviews/product_rating_bar.dart';
-import 'package:ecommerce_app/src/models/review.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/responsive_center.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/primary_button.dart';
+import 'package:ecommerce_starter_app/src/constants/app_sizes.dart';
+import 'package:ecommerce_starter_app/src/features/product_page/product_reviews/product_rating_bar.dart';
+import 'package:ecommerce_starter_app/src/models/review.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
   const LeaveReviewScreen({super.key, required this.productId});

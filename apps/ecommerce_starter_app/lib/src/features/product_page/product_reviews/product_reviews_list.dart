@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/src/constants/breakpoints.dart';
+import 'package:ecommerce_starter_app/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/src/common_widgets/responsive_center.dart';
-import 'package:ecommerce_app/src/constants/app_sizes.dart';
-import 'package:ecommerce_app/src/features/product_page/product_reviews/product_review_card.dart';
-import 'package:ecommerce_app/src/models/review.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/responsive_center.dart';
+import 'package:ecommerce_starter_app/src/constants/app_sizes.dart';
+import 'package:ecommerce_starter_app/src/features/product_page/product_reviews/product_review_card.dart';
+import 'package:ecommerce_starter_app/src/models/review.dart';
 
 /// Shows the list of reviews for a given product ID
 class ProductReviewsList extends StatelessWidget {

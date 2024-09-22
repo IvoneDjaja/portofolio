@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/src/features/products_list/products_list_screen.dart';
-import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
-import 'package:ecommerce_app/src/routing/app_router.dart';
+import 'package:ecommerce_starter_app/src/features/products_list/products_list_screen.dart';
+import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
+import 'package:ecommerce_starter_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
