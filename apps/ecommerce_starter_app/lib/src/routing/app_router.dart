@@ -24,7 +24,6 @@ enum AppRoute {
 
 final goRouter = GoRouter(
   initialLocation: '/',
-  debugLogDiagnostics: true,
   routes: [
     GoRoute(
       path: '/',
@@ -45,7 +44,6 @@ final goRouter = GoRouter(
               pageBuilder: (context, state) {
                 final productId = state.pathParameters['id']!;
                 return MaterialPage(
-                  key: state.pageKey,
                   fullscreenDialog: true,
                   child: LeaveReviewScreen(productId: productId),
                 );
@@ -58,7 +56,6 @@ final goRouter = GoRouter(
           name: AppRoute.cart.name,
           builder: (context, state) => ShoppingCartScreen(),
           pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
             fullscreenDialog: true,
             child: const ShoppingCartScreen(),
           ),
@@ -68,7 +65,6 @@ final goRouter = GoRouter(
               name: AppRoute.checkout.name,
               builder: (context, state) => ShoppingCartScreen(),
               pageBuilder: (context, state) => MaterialPage(
-                key: state.pageKey,
                 fullscreenDialog: true,
                 child: const CheckoutScreen(),
               ),
@@ -80,7 +76,6 @@ final goRouter = GoRouter(
           name: AppRoute.orders.name,
           builder: (context, state) => ShoppingCartScreen(),
           pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
             fullscreenDialog: true,
             child: const OrdersListScreen(),
           ),
@@ -90,7 +85,6 @@ final goRouter = GoRouter(
           name: AppRoute.account.name,
           builder: (context, state) => ShoppingCartScreen(),
           pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
             fullscreenDialog: true,
             child: const AccountScreen(),
           ),
@@ -100,7 +94,6 @@ final goRouter = GoRouter(
           name: AppRoute.signIn.name,
           builder: (context, state) => ShoppingCartScreen(),
           pageBuilder: (context, state) => MaterialPage(
-            key: state.pageKey,
             fullscreenDialog: true,
             child: const EmailPasswordSignInScreen(
               formType: EmailPasswordSignInFormType.signIn,
