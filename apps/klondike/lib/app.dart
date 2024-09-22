@@ -21,11 +21,11 @@ class GameApp extends StatelessWidget {
 }
 
 class KlondikeGame extends FlameGame {
+  static const double cardGap = 175;
   static const double cardWidth = 1000;
   static const double cardHeight = 1400;
-  static const double cardGap = 175;
-  static final Vector2 cardSize = Vector2(cardWidth, cardHeight);
   static const double cardRadius = 100.0;
+  static final Vector2 cardSize = Vector2(cardWidth, cardHeight);
   static final cardRRect = RRect.fromRectAndRadius(
     const Rect.fromLTWH(0, 0, cardWidth, cardHeight),
     const Radius.circular(cardRadius),
@@ -35,27 +35,24 @@ class KlondikeGame extends FlameGame {
   Future<void> onLoad() async {
     await Flame.images.load('klondike-sprites.png');
 
-    final stock = StockPile()
-      ..size = cardSize
-      ..position = Vector2(cardGap, cardGap);
-    final waste = WastePile()
-      ..size = cardSize
-      ..position = Vector2(cardWidth + 2 * cardGap, cardGap);
+    final stock = StockPile(position: Vector2(cardGap, cardGap));
+    final waste =
+        WastePile(position: Vector2(cardWidth + 2 * cardGap, cardGap));
     final foundations = List.generate(
       4,
-      (i) => FoundationPile(i)
-        ..size = cardSize
-        ..position =
-            Vector2((i + 3) * (cardWidth + cardGap) + cardGap, cardGap),
+      (i) => FoundationPile(
+        i,
+        position: Vector2((i + 3) * (cardWidth + cardGap) + cardGap, cardGap),
+      ),
     );
     final piles = List.generate(
       7,
-      (i) => TableauPile()
-        ..size = cardSize
-        ..position = Vector2(
+      (i) => TableauPile(
+        position: Vector2(
           cardGap + i * (cardWidth + cardGap),
           cardHeight + 2 * cardGap,
         ),
+      ),
     );
 
     world.add(stock);

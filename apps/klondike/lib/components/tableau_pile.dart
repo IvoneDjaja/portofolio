@@ -8,36 +8,12 @@ import 'package:klondike/components/pile.dart';
 class TableauPile extends PositionComponent implements Pile {
   TableauPile({super.position}) : super(size: KlondikeGame.cardSize);
 
+  /// Which cards are currently placed onto this pile.
   final List<Card> _cards = [];
-  final Vector2 _fanOffset = Vector2(0, KlondikeGame.cardHeight * 0.05);
+  final Vector2 _fanOffset1 = Vector2(0, KlondikeGame.cardHeight * 0.05);
+  final Vector2 _fanOffset2 = Vector2(0, KlondikeGame.cardHeight * 0.20);
 
-  final _borderPaint = Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 10
-    ..color = const Color(0x50ffffff);
-
-  @override
-  void render(Canvas canvas) {
-    canvas.drawRRect(KlondikeGame.cardRRect, _borderPaint);
-  }
-
-  @override
-  void acquireCard(Card card) {
-    if (_cards.isEmpty) {
-      card.position = position;
-    } else {
-      card.position = _cards.last.position = _fanOffset;
-    }
-    card.priority = _cards.length;
-    _cards.add(card);
-    card.pile = this;
-  }
-
-  void flipTopCard() {
-    assert(_cards.last.isFaceDown);
-    _cards.last.flip();
-  }
-
+  // Pile API
   @override
   bool canMoveCard(Card card) => card.isFaceUp;
 
@@ -60,19 +36,29 @@ class TableauPile extends PositionComponent implements Pile {
     if (_cards.isNotEmpty && _cards.last.isFaceDown) {
       flipTopCard();
     }
+    layOutCards();
   }
 
   @override
   void returnCard(Card card) {
-    final index = _cards.indexOf(card);
-    card.position =
-        index == 0 ? position : _cards[index - 1].position + _fanOffset;
-    card.priority = index;
+    card.priority = _cards.indexOf(card);
+    layOutCards();
+  }
+
+  @override
+  void acquireCard(Card card) {
+    card.pile = this;
+    card.priority = _cards.length;
+    _cards.add(card);
+    layOutCards();
+  }
+
+  void flipTopCard() {
+    assert(_cards.last.isFaceDown);
+    _cards.last.flip();
   }
 
   void layOutCards() {
-    final Vector2 _fanOffset1 = Vector2(0, KlondikeGame.cardHeight * 0.05);
-    final Vector2 _fanOffset2 = Vector2(0, KlondikeGame.cardHeight * 0.20);
     if (_cards.isEmpty) {
       return;
     }
@@ -89,5 +75,16 @@ class TableauPile extends PositionComponent implements Pile {
     assert(card.isFaceUp && _cards.contains(card));
     final index = _cards.indexOf(card);
     return _cards.getRange(index + 1, _cards.length).toList();
+  }
+
+  // Rendering
+  final _borderPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 10
+    ..color = const Color(0x50ffffff);
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawRRect(KlondikeGame.cardRRect, _borderPaint);
   }
 }

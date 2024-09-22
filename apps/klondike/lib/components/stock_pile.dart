@@ -14,13 +14,28 @@ class StockPile extends PositionComponent with TapCallbacks implements Pile {
   /// list is at the bottom, the last card is on top.
   final List<Card> _cards = [];
 
+  // Pile API
+  @override
+  bool canMoveCard(Card card) => false;
+
+  @override
+  bool canAcceptCard(Card card) => false;
+
+  @override
+  void removeCard(Card card) =>
+      throw StateError('cannot remove cards from here');
+
+  @override
+  void returnCard(Card card) =>
+      throw StateError('cannot remove cards from here');
+
   @override
   void acquireCard(Card card) {
     assert(!card.isFaceUp);
+    card.pile = this;
     card.position = position;
     card.priority = _cards.length;
     _cards.add(card);
-    card.pile = this;
   }
 
   @override
@@ -42,17 +57,17 @@ class StockPile extends PositionComponent with TapCallbacks implements Pile {
     }
   }
 
+  // Rendering
+  final _borderPaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 10
+    ..color = const Color(0xFF3F5B5D);
+  final _circlePaint = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 100
+    ..color = const Color(0x883F5B5D);
   @override
   void render(Canvas canvas) {
-    final _borderPaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 10
-      ..color = const Color(0xFF3F5B5D);
-    final _circlePaint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 100
-      ..color = const Color(0x883F5B5D);
-
     canvas.drawRRect(KlondikeGame.cardRRect, _borderPaint);
     canvas.drawCircle(
       Offset(width / 2, height / 2),
@@ -60,20 +75,4 @@ class StockPile extends PositionComponent with TapCallbacks implements Pile {
       _circlePaint,
     );
   }
-
-  @override
-  bool canMoveCard(Card card) => false;
-
-  @override
-  bool canAcceptCard(Card card) {
-    return false;
-  }
-
-  @override
-  void removeCard(Card card) =>
-      throw StateError('cannot remove cards from here');
-
-  @override
-  void returnCard(Card card) =>
-      throw StateError('cannot remove cards from here');
 }

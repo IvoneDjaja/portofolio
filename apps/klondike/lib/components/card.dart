@@ -10,6 +10,36 @@ import 'package:klondike/rank.dart';
 import 'package:klondike/suit.dart';
 
 class Card extends PositionComponent with DragCallbacks {
+  Card(int intRank, int intSuit)
+      : rank = Rank.fromInt(intRank),
+        suit = Suit.fromInt(intSuit),
+        _faceUp = false,
+        super(size: KlondikeGame.cardSize);
+
+  final Rank rank;
+  final Suit suit;
+  Pile? pile;
+  bool _faceUp;
+  bool _isDragging = false;
+  final List<Card> attachedCards = [];
+
+  bool get isFaceUp => _faceUp;
+  bool get isFaceDown => !_faceUp;
+  void flip() => _faceUp = !_faceUp;
+
+  @override
+  String toString() => rank.label + suit.label;
+
+  // Rendering
+  @override
+  void render(Canvas canvas) {
+    if (_faceUp) {
+      _renderFront(canvas);
+    } else {
+      _renderBack(canvas);
+    }
+  }
+
   static final Paint backBackgroundPaint = Paint()
     ..color = const Color(0xff380c02);
   static final Paint backBorderPaint1 = Paint()
@@ -37,16 +67,15 @@ class Card extends PositionComponent with DragCallbacks {
     ..color = const Color(0xff7ab2e8)
     ..style = PaintingStyle.stroke
     ..strokeWidth = 10;
-
-  static final Sprite redJack = klondikeSprite(81, 565, 562, 488);
-  static final Sprite redQueen = klondikeSprite(717, 541, 486, 515);
-  static final Sprite redKing = klondikeSprite(1305, 532, 407, 549);
-
   static final blueFilter = Paint()
     ..colorFilter = const ColorFilter.mode(
       Color(0x880d8bff),
       BlendMode.srcATop,
     );
+
+  static final Sprite redJack = klondikeSprite(81, 565, 562, 488);
+  static final Sprite redQueen = klondikeSprite(717, 541, 486, 515);
+  static final Sprite redKing = klondikeSprite(1305, 532, 407, 549);
   static final Sprite blackJack = klondikeSprite(81, 565, 562, 488)
     ..paint = blueFilter;
   static final Sprite blackQueen = klondikeSprite(717, 541, 486, 515)
@@ -54,37 +83,12 @@ class Card extends PositionComponent with DragCallbacks {
   static final Sprite blackKing = klondikeSprite(1305, 532, 407, 549)
     ..paint = blueFilter;
 
-  Card(int intRank, int intSuit)
-      : rank = Rank.fromInt(intRank),
-        suit = Suit.fromInt(intSuit),
-        _faceUp = false,
-        super(size: KlondikeGame.cardSize);
-
-  final Rank rank;
-  final Suit suit;
-  bool _faceUp;
-  Pile? pile;
-  final List<Card> attachedCards = [];
-
-  bool get isFaceUp => _faceUp;
-  bool get isFaceDown => !_faceUp;
-  void flip() => _faceUp = !_faceUp;
-
-  @override
-  String toString() => rank.label + suit.label;
-
-  @override
-  void render(Canvas canvas) {
-    if (_faceUp) {
-      _renderFront(canvas);
-    } else {
-      _renderBack(canvas);
-    }
-  }
-
   void _renderFront(Canvas canvas) {
     canvas.drawRRect(cardRRect, frontBackgroundPaint);
-    canvas.drawRRect(cardRRect, suit.isRed ? redBorderPaint : blackBorderPaint);
+    canvas.drawRRect(
+      cardRRect,
+      suit.isRed ? redBorderPaint : blackBorderPaint,
+    );
 
     final rankSprite = suit.isBlack ? rank.blackSprite : rank.redSprite;
     final suitSprite = suit.sprite;
@@ -200,10 +204,12 @@ class Card extends PositionComponent with DragCallbacks {
     }
   }
 
+  // Dragging
   @override
   void onDragStart(DragStartEvent event) {
+    super.onDragStart(event);
     if (pile?.canMoveCard(this) ?? false) {
-      super.onDragStart(event);
+      _isDragging = true;
       priority = 100;
       if (pile is TableauPile) {
         attachedCards.clear();
@@ -218,20 +224,21 @@ class Card extends PositionComponent with DragCallbacks {
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    if (!isDragged) {
+    if (!_isDragging) {
       return;
     }
-    final delta = event.delta;
+    final delta = event.localDelta;
     position.add(delta);
     attachedCards.forEach((card) => card.position.add(delta));
   }
 
   @override
   void onDragEnd(DragEndEvent event) {
-    if (!isDragged) {
+    super.onDragEnd(event);
+    if (!_isDragging) {
       return;
     }
-    super.onDragEnd(event);
+    _isDragging = false;
     final dropPiles = parent!
         .componentsAtPoint(position + size / 2)
         .whereType<Pile>()
