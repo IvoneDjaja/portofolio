@@ -2,6 +2,7 @@ import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/checkout_screen/checkout_screen.dart';
 import 'package:ecommerce_starter_app/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
+import 'package:ecommerce_starter_app/src/routing/go_router_refresh_stream.dart';
 import 'package:ecommerce_starter_app/src/routing/not_found_screen.dart';
 import 'package:ecommerce_starter_app/src/features/orders/presentation/orders_list/orders_list_screen.dart';
 import 'package:ecommerce_starter_app/src/features/products/presentation/product_screen/product_screen.dart';
@@ -41,6 +42,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       }
       return null;
     },
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: '/',
