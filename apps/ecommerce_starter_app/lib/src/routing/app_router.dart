@@ -1,3 +1,4 @@
+import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/checkout_screen/checkout_screen.dart';
 import 'package:ecommerce_starter_app/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
@@ -9,6 +10,7 @@ import 'package:ecommerce_starter_app/src/features/cart/presentation/shopping_ca
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
@@ -22,86 +24,102 @@ enum AppRoute {
   signIn,
 }
 
-final goRouter = GoRouter(
-  initialLocation: '/',
-  routes: [
-    GoRoute(
-      path: '/',
-      name: AppRoute.home.name,
-      builder: (context, state) => ProductsListScreen(),
-      routes: [
-        GoRoute(
-          path: 'product/:id',
-          name: AppRoute.product.name,
-          builder: (context, state) {
-            final productId = state.pathParameters['id']!;
-            return ProductScreen(productId: productId);
-          },
-          routes: [
-            GoRoute(
-              path: 'review',
-              name: AppRoute.leaveReview.name,
-              pageBuilder: (context, state) {
-                final productId = state.pathParameters['id']!;
-                return MaterialPage(
-                  fullscreenDialog: true,
-                  child: LeaveReviewScreen(productId: productId),
-                );
-              },
-            ),
-          ],
-        ),
-        GoRoute(
-          path: 'cart',
-          name: AppRoute.cart.name,
-          builder: (context, state) => ShoppingCartScreen(),
-          pageBuilder: (context, state) => MaterialPage(
-            fullscreenDialog: true,
-            child: const ShoppingCartScreen(),
+final goRouterProvider = Provider<GoRouter>((ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return GoRouter(
+    initialLocation: '/',
+    redirect: (context, state) {
+      final isLoggedIn = authRepository.currentUser != null;
+      if (isLoggedIn) {
+        if (state.uri.path == '/signIn') {
+          return '/';
+        }
+      } else {
+        if (state.uri.path == '/account' || state.uri.path == '/orders') {
+          return '/';
+        }
+      }
+      return null;
+    },
+    routes: [
+      GoRoute(
+        path: '/',
+        name: AppRoute.home.name,
+        builder: (context, state) => ProductsListScreen(),
+        routes: [
+          GoRoute(
+            path: 'product/:id',
+            name: AppRoute.product.name,
+            builder: (context, state) {
+              final productId = state.pathParameters['id']!;
+              return ProductScreen(productId: productId);
+            },
+            routes: [
+              GoRoute(
+                path: 'review',
+                name: AppRoute.leaveReview.name,
+                pageBuilder: (context, state) {
+                  final productId = state.pathParameters['id']!;
+                  return MaterialPage(
+                    fullscreenDialog: true,
+                    child: LeaveReviewScreen(productId: productId),
+                  );
+                },
+              ),
+            ],
           ),
-          routes: [
-            GoRoute(
-              path: 'checkout',
-              name: AppRoute.checkout.name,
-              builder: (context, state) => ShoppingCartScreen(),
-              pageBuilder: (context, state) => MaterialPage(
-                fullscreenDialog: true,
-                child: const CheckoutScreen(),
+          GoRoute(
+            path: 'cart',
+            name: AppRoute.cart.name,
+            builder: (context, state) => ShoppingCartScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              fullscreenDialog: true,
+              child: const ShoppingCartScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: 'checkout',
+                name: AppRoute.checkout.name,
+                builder: (context, state) => ShoppingCartScreen(),
+                pageBuilder: (context, state) => MaterialPage(
+                  fullscreenDialog: true,
+                  child: const CheckoutScreen(),
+                ),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: 'orders',
+            name: AppRoute.orders.name,
+            builder: (context, state) => ShoppingCartScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              fullscreenDialog: true,
+              child: const OrdersListScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'account',
+            name: AppRoute.account.name,
+            builder: (context, state) => ShoppingCartScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              fullscreenDialog: true,
+              child: const AccountScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'signIn',
+            name: AppRoute.signIn.name,
+            builder: (context, state) => ShoppingCartScreen(),
+            pageBuilder: (context, state) => MaterialPage(
+              fullscreenDialog: true,
+              child: const EmailPasswordSignInScreen(
+                formType: EmailPasswordSignInFormType.signIn,
               ),
             ),
-          ],
-        ),
-        GoRoute(
-          path: 'orders',
-          name: AppRoute.orders.name,
-          builder: (context, state) => ShoppingCartScreen(),
-          pageBuilder: (context, state) => MaterialPage(
-            fullscreenDialog: true,
-            child: const OrdersListScreen(),
           ),
-        ),
-        GoRoute(
-          path: 'account',
-          name: AppRoute.account.name,
-          builder: (context, state) => ShoppingCartScreen(),
-          pageBuilder: (context, state) => MaterialPage(
-            fullscreenDialog: true,
-            child: const AccountScreen(),
-          ),
-        ),
-        GoRoute(
-          path: 'signIn',
-          name: AppRoute.signIn.name,
-          builder: (context, state) => ShoppingCartScreen(),
-          pageBuilder: (context, state) => MaterialPage(
-            fullscreenDialog: true,
-            child: const EmailPasswordSignInScreen(
-              formType: EmailPasswordSignInFormType.signIn,
-            ),
-          ),
-        ),
-      ],
-    ),
-  ],
-  errorBuilder: (context, state) => const NotFoundScreen(),
-);
+        ],
+      ),
+    ],
+    errorBuilder: (context, state) => const NotFoundScreen(),
+  );
+});
