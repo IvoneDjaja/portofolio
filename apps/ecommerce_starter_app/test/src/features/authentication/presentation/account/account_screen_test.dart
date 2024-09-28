@@ -14,4 +14,13 @@ void main() {
     await r.tapCancelButton();
     r.expectLogoutDialogNotFound();
   });
+
+  testWidgets('Confirm logout success', (tester) async {
+    final r = AuthRobot(tester);
+    await r.pumpAccountScreen();
+    await r.tapLogoutButton();
+    r.expectLogoutDialogFound();
+    await r.tapDialogLogoutButton();
+    r.expectLogoutDialogNotFound();
+  });
 }
