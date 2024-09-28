@@ -1,4 +1,4 @@
-import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
+@Timeout(Duration(milliseconds: 500))
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_controller.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,9 +42,6 @@ void main() {
         final result = await controller.submit(testEmail, testPassword);
         expect(result, true);
       },
-      timeout: Timeout(
-        Duration(milliseconds: 500),
-      ),
     );
     test(
       '''
@@ -78,9 +75,6 @@ void main() {
         final result = await controller.submit(testEmail, testPassword);
         expect(result, false);
       },
-      timeout: Timeout(
-        Duration(milliseconds: 500),
-      ),
     );
     test(
       '''
@@ -112,9 +106,6 @@ void main() {
         final result = await controller.submit(testEmail, testPassword);
         expect(result, true);
       },
-      timeout: Timeout(
-        Duration(milliseconds: 500),
-      ),
     );
     test(
       '''
@@ -148,9 +139,6 @@ void main() {
         final result = await controller.submit(testEmail, testPassword);
         expect(result, false);
       },
-      timeout: Timeout(
-        Duration(milliseconds: 500),
-      ),
     );
   });
 
