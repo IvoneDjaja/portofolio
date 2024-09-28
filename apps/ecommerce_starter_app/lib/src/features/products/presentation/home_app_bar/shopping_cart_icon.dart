@@ -1,4 +1,3 @@
-import 'package:ecommerce_starter_app/src/features/cart/presentation/shopping_cart/shopping_cart_screen.dart';
 import 'package:ecommerce_starter_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_starter_app/src/constants/app_sizes.dart';

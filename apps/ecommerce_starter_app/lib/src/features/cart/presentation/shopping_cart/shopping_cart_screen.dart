@@ -1,4 +1,3 @@
-import 'package:ecommerce_starter_app/src/features/checkout/presentation/checkout_screen/checkout_screen.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 import 'package:ecommerce_starter_app/src/features/cart/domain/item.dart';
 import 'package:ecommerce_starter_app/src/routing/app_router.dart';

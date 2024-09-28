@@ -1,4 +1,3 @@
-import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_controller.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
