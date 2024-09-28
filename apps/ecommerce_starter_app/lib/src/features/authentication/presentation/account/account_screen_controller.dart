@@ -1,5 +1,4 @@
 import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AccountScreenController extends StateNotifier<AsyncValue<void>> {
