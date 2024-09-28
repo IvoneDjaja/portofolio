@@ -10,7 +10,9 @@ class FakeProductsRepository {
   }
 
   Product? getProduct(String id) {
-    return _products.firstWhere((product) => product.id == id);
+    return _products.firstWhere(
+      (product) => product.id == id,
+    );
   }
 
   Future<List<Product>> fetchProductsList() {
