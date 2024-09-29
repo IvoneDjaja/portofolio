@@ -121,3 +121,5 @@ firebase-exports
 
 # Ignore test coverage data
 coverage/lcov.info
+
+**/failures/*.png
