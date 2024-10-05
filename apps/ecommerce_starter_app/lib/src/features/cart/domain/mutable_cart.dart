@@ -4,6 +4,12 @@ import 'package:ecommerce_starter_app/src/features/products/domain/product.dart'
 
 /// Helper extension used to mutate the items in the shopping cart.
 extension MutableCart on Cart {
+  Cart setItem(Item item) {
+    final copy = Map<ProductID, int>.from(items);
+    copy[item.productId] = item.quantity;
+    return Cart(copy);
+  }
+
   Cart addItem(Item item) {
     final copy = Map<ProductID, int>.from(items);
     if (copy.containsKey(item.productId)) {
