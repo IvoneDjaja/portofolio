@@ -1,4 +1,5 @@
 import 'package:ecommerce_starter_app/src/app.dart';
+import 'package:ecommerce_starter_app/src/features/cart/application/cart_sync_service.dart';
 import 'package:ecommerce_starter_app/src/features/cart/data/local/sembast_cart_repository.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
@@ -14,11 +15,17 @@ void main() async {
   // * https://docs.flutter.dev/testing/errors
   registerErrorHandlers();
   final localCartRepository = await SembastCartRepository.makeDefault();
-  // * Entry point of the app
-  runApp(ProviderScope(
+  // * Create ProviderContainer with any required overrides
+  final container = ProviderContainer(
     overrides: [
       localCartRepositoryProvider.overrideWithValue(localCartRepository),
     ],
+  );
+  // * Initialize CartSyncService to start the listener
+  container.read(cartSyncServiceProvider);
+  // * Entry point of the app
+  runApp(UncontrolledProviderScope(
+    container: container,
     child: MyApp(),
   ));
 }
