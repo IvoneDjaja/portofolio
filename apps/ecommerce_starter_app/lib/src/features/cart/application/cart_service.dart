@@ -48,6 +48,8 @@ class CartService {
     await _setCart(updated);
   }
 
+  /// Removes an item from the local or remote cart depending on the user auth
+  /// state
   Future<void> removeItemById(ProductID productId) async {
     final cart = await _fetchCart();
     final updated = cart.removeItemById(productId);

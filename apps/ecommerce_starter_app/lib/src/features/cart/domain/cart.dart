@@ -15,21 +15,20 @@ class Cart {
   final Map<ProductID, int> items;
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'items': items,
     };
   }
 
   factory Cart.fromMap(Map<String, dynamic> map) {
     return Cart(Map<ProductID, int>.from(
-      (map['items'] as Map<ProductID, int>),
+      (map['items']),
     ));
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Cart.fromJson(String source) =>
-      Cart.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Cart.fromJson(String source) => Cart.fromMap(json.decode(source));
 
   @override
   bool operator ==(covariant Cart other) {
