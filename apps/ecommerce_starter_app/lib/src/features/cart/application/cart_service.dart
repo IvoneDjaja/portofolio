@@ -66,3 +66,10 @@ final cartProvider = StreamProvider<Cart>((ref) {
     return ref.watch(localCartRepositoryProvider).watchCart();
   }
 });
+
+final cartItemsCountProvider = Provider<int>((ref) {
+  return ref.watch(cartProvider).maybeWhen(
+        data: (cart) => cart.items.length,
+        orElse: () => 0,
+      );
+});
