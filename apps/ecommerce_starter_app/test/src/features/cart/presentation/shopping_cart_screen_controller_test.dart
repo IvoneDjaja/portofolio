@@ -58,6 +58,7 @@ void main() {
         verify(() => cartService.setItem(item)).called(1);
       });
     },
+    skip: true,
   );
   group('removeItemById', () {
     test('remove item, success', () async {

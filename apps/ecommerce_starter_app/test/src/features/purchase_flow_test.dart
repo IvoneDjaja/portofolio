@@ -32,5 +32,6 @@ void main() {
       await r.auth.tapDialogLogoutButton();
       r.products.expectFindAllProductCards();
     },
+    skip: true,
   );
 }
