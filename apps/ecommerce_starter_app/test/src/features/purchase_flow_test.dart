@@ -17,7 +17,7 @@ void main() {
       r.cart.expectFindNCartItems(1);
       // checkout
       await r.checkout.startCheckout();
-      await r.auth.signInWithEmailAndPassword();
+      await r.auth.enterAndSubmitEmailAndPassword();
       r.products.expectFindAllProductCards();
       r.cart.expectFindNCartItems(1);
       await r.checkout.startPayment();

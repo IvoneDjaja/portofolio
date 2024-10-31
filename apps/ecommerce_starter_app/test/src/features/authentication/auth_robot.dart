@@ -1,4 +1,5 @@
 import 'package:ecommerce_starter_app/src/common_widgets/alert_dialogs.dart';
+import 'package:ecommerce_starter_app/src/common_widgets/custom_text_button.dart';
 import 'package:ecommerce_starter_app/src/common_widgets/primary_button.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
@@ -47,6 +48,13 @@ class AuthRobot {
     await tester.pumpAndSettle();
   }
 
+  Future<void> tapFormToggleButton() async {
+    final toggleButton = find.byType(CustomTextButton);
+    expect(toggleButton, findsOneWidget);
+    await tester.tap(toggleButton);
+    await tester.pumpAndSettle();
+  }
+
   Future<void> enterEmail(String email) async {
     final emailField = find.byKey(EmailPasswordSignInScreen.emailKey);
     expect(emailField, findsOneWidget);
@@ -83,7 +91,7 @@ class AuthRobot {
     await tester.pumpAndSettle();
   }
 
-  Future<void> signInWithEmailAndPassword() async {
+  Future<void> enterAndSubmitEmailAndPassword() async {
     await enterEmail('test@test.com');
     await enterPassword('test1234');
     await tapEmailAndPasswordSubmitButton();

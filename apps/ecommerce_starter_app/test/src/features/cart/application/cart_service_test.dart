@@ -62,7 +62,7 @@ void main() {
 
     test('non-null user, writes item to remote cart', () async {
       // Setup.
-      const testUser = AppUser(uid: 'abc');
+      const testUser = AppUser(uid: 'abc', email: 'abc@test.com');
       const expectedCart = Cart({'123': 1});
       when(() => authRepository.currentUser).thenReturn(testUser);
       when(() => remoteCartRepository.fetchCart(testUser.uid))
