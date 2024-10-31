@@ -1,7 +1,6 @@
 import 'package:ecommerce_starter_app/src/common_widgets/async_value_widget.dart';
 import 'package:ecommerce_starter_app/src/features/cart/application/cart_service.dart';
 import 'package:ecommerce_starter_app/src/features/cart/domain/cart.dart';
-import 'package:ecommerce_starter_app/src/features/cart/domain/item.dart';
 import 'package:ecommerce_starter_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/payment/payment_button.dart';

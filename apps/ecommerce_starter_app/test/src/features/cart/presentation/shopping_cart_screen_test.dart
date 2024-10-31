@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../robots.dart';
+import '../../../robot.dart';
 
 void main() {
   group('shopping cart', () {

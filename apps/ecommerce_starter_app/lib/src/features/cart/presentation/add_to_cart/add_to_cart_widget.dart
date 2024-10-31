@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:ecommerce_starter_app/src/common_widgets/alert_dialogs.dart';
-import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:ecommerce_starter_app/src/features/cart/application/cart_service.dart';
 import 'package:ecommerce_starter_app/src/features/cart/presentation/add_to_cart/add_to_cart_controller.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';

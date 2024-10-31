@@ -2,7 +2,7 @@ import 'package:ecommerce_starter_app/src/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../robots.dart';
+import '../robot.dart';
 
 void main() {
   final sizeVariant = ValueVariant<Size>({

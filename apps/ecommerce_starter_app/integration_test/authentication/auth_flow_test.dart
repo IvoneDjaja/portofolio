@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../test/src/robots.dart';
+import '../../test/src/robot.dart';
 
 void main() {
   testWidgets('Sign in and sign out flow', (tester) async {

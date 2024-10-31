@@ -1,7 +1,4 @@
 import 'package:ecommerce_starter_app/src/features/authentication/domain/app_user.dart';
-import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

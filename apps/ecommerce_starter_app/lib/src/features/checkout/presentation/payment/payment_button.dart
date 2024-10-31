@@ -1,4 +1,3 @@
-import 'package:ecommerce_starter_app/src/common_widgets/alert_dialogs.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/payment/payment_button_controller.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 import 'package:ecommerce_starter_app/src/utils/async_value_ui.dart';
