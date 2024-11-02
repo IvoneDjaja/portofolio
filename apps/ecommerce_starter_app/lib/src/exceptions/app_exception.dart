@@ -7,6 +7,18 @@ sealed class AppException implements Exception {
   final String message;
 }
 
+// String fn(AppException exception) {
+//   return switch (exception) {
+//     EmailAlreadyInUseException() => 'Email already in use',
+//     WeakPasswordException() => 'Password is too weak',
+//     WrongPasswordException() => 'Wrong password',
+//     UserNotFoundException() => 'User not found',
+//     CartSyncFailedException() => 'Cart sync failed',
+//     PaymentFailureEmptyCartException() => 'Payment failure',
+//     ParseOrderFailureException(status: final status) => 'Parse error: $status',
+//   };
+// }
+
 /// Auth
 class EmailAlreadyInUseException extends AppException {
   EmailAlreadyInUseException()
