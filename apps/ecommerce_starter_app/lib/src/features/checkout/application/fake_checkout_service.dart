@@ -49,6 +49,7 @@ class FakeCheckoutService {
       await remoteCartRepository.setCart(uid, const Cart());
     } else {
       throw StateError('Can\'t place an order if the cart is empty');
+      // throw const AppException.paymentFailureEmptyCart();
     }
     ;
   }
