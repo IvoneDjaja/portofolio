@@ -9,7 +9,6 @@ import 'package:ecommerce_starter_app/src/features/products/presentation/product
 import 'package:ecommerce_starter_app/src/features/products/presentation/products_list/products_list_screen.dart';
 import 'package:ecommerce_starter_app/src/features/cart/presentation/shopping_cart/shopping_cart_screen.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
-import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
