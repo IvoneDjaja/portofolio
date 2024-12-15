@@ -1,4 +1,5 @@
 import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
+import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_form_type.dart';
 import 'package:ecommerce_starter_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/payment/payment_page.dart';

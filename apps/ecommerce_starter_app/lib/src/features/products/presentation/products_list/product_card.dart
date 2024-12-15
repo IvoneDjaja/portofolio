@@ -5,9 +5,10 @@ import 'package:ecommerce_starter_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_starter_app/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:ecommerce_starter_app/src/features/products/domain/product.dart';
 import 'package:ecommerce_starter_app/src/utils/currency_formatter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Used to show a single product inside a card.
-class ProductCard extends StatelessWidget {
+class ProductCard extends ConsumerWidget {
   const ProductCard({super.key, required this.product, this.onPressed});
   final Product product;
   final VoidCallback? onPressed;
@@ -16,9 +17,10 @@ class ProductCard extends StatelessWidget {
   static const productCardKey = Key('product-card');
 
   @override
-  Widget build(BuildContext context) {
-    // TODO: Inject formatter
-    final priceFormatted = kCurrencyFormatter.format(product.price);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final priceFormatted =
+        ref.watch(currencyFormatterProvider).format(product.price);
+    (product.price);
     return Card(
       child: InkWell(
         key: productCardKey,

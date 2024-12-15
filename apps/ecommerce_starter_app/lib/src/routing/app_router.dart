@@ -1,5 +1,6 @@
 import 'package:ecommerce_starter_app/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:ecommerce_starter_app/src/features/authentication/presentation/account/account_screen.dart';
+import 'package:ecommerce_starter_app/src/features/authentication/presentation/sign_in/email_password_sign_in_form_type.dart';
 import 'package:ecommerce_starter_app/src/features/checkout/presentation/checkout_screen/checkout_screen.dart';
 import 'package:ecommerce_starter_app/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
 import 'package:ecommerce_starter_app/src/routing/go_router_refresh_stream.dart';

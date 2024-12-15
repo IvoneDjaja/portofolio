@@ -1,34 +1,37 @@
 import 'package:ecommerce_starter_app/src/features/cart/application/cart_service.dart';
 import 'package:ecommerce_starter_app/src/features/cart/domain/item.dart';
 import 'package:ecommerce_starter_app/src/features/products/domain/product.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class AddToCartController extends StateNotifier<AsyncValue<int>> {
-  AddToCartController({required this.cartService}) : super(const AsyncData(1));
-  final CartService cartService;
+part 'add_to_cart_controller.g.dart';
 
-  void updateQuantity(int quantity) {
-    state = AsyncData(quantity);
+@riverpod
+class AddToCartController extends _$AddToCartController {
+  @override
+  FutureOr<void> build() {
+    // nothing to do
   }
 
   Future<void> addItem(ProductID productId) async {
-    final item = Item(productId: productId, quantity: state.value!);
-    state = const AsyncLoading<int>().copyWithPrevious(state);
-    final value = await AsyncValue.guard(() => cartService.addItem(item));
-    if (value.hasError) {
-      state = AsyncError(value.error!, StackTrace.current);
-    } else {
-      state = const AsyncData(1);
+    final cartService = ref.read(cartServiceProvider);
+    final quantity = ref.read(itemQuantityControllerProvider);
+    final item = Item(productId: productId, quantity: quantity);
+    state = const AsyncLoading<void>();
+    state = await AsyncValue.guard(() => cartService.addItem(item));
+    if (!state.hasError) {
+      ref.read(itemQuantityControllerProvider.notifier).updateQuantity(1);
     }
   }
 }
 
-// TODO: Should this use autoDispose?
-final addToCartControllerProvider =
-    StateNotifierProvider.autoDispose<AddToCartController, AsyncValue<int>>(
-  (ref) {
-    return AddToCartController(
-      cartService: ref.watch(cartServiceProvider),
-    );
-  },
-);
+@riverpod
+class ItemQuantityController extends _$ItemQuantityController {
+  @override
+  int build() {
+    return 1;
+  }
+
+  void updateQuantity(int quantity) {
+    state = quantity;
+  }
+}

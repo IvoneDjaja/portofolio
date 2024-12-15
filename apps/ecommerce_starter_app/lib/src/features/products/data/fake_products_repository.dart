@@ -5,7 +5,6 @@ import 'package:ecommerce_starter_app/src/features/products/domain/product.dart'
 import 'package:ecommerce_starter_app/src/utils/delay.dart';
 import 'package:ecommerce_starter_app/src/utils/in_memory_store.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'fake_products_repository.g.dart';
@@ -77,7 +76,7 @@ class FakeProductsRepository {
   }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 FakeProductsRepository productsRepository(ProductsRepositoryRef ref) {
   // * Set addDelay to false for faster loading
   return FakeProductsRepository(addDelay: false);
