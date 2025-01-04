@@ -1,8 +1,9 @@
+import 'package:ember_quest/actors/ember.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 class EmberQuestGame extends FlameGame {
-  EmberQuestGame();
+  late EmberPlayer _ember;
 
   @override
   Future<void> onLoad() async {
@@ -17,5 +18,10 @@ class EmberQuestGame extends FlameGame {
     ]);
 
     camera.viewfinder.anchor = Anchor.topLeft;
+
+    _ember = EmberPlayer(
+      position: Vector2(128, canvasSize.y - 70),
+    );
+    world.add(_ember);
   }
 }
