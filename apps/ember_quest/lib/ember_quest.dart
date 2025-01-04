@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ember_quest/actors/ember.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -9,12 +11,17 @@ import 'objects/star.dart';
 
 class EmberQuestGame extends FlameGame {
   late EmberPlayer _ember;
+  double objectSpeed = 0.0;
 
   void loadGameSegments(int segmentIndex, double xPositionOffset) {
     for (final block in segments[segmentIndex]) {
       switch (block.blockType) {
         case GroundBlock:
         case PlatformBlock:
+          add(PlatformBlock(
+            gridPosition: block.gridPosition,
+            xOffset: xPositionOffset,
+          ));
         case Star:
         case WaterEnemy:
       }
@@ -33,6 +40,11 @@ class EmberQuestGame extends FlameGame {
       position: Vector2(128, canvasSize.y - 70),
     );
     world.add(_ember);
+  }
+
+  @override
+  Color backgroundColor() {
+    return const Color.fromARGB(255, 173, 223, 247);
   }
 
   @override
