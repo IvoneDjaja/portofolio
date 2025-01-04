@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:ember_quest/actors/ember.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'actors/water_enemy.dart';
@@ -10,7 +11,7 @@ import 'objects/ground_block.dart';
 import 'objects/platform_block.dart';
 import 'objects/star.dart';
 
-class EmberQuestGame extends FlameGame {
+class EmberQuestGame extends FlameGame with HasKeyboardHandlerComponents {
   late EmberPlayer _ember;
   double objectSpeed = 0.0;
   late double lastBlockXPosition = 0.0;
