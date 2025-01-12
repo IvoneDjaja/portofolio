@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:ember_quest/actors/ember.dart';
+import 'package:ember_quest/overlays/hud.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -17,6 +18,8 @@ class EmberQuestGame extends FlameGame
   double objectSpeed = 0.0;
   late double lastBlockXPosition = 0.0;
   late UniqueKey lastBlockKey;
+  int starsCollected = 0;
+  int health = 3;
 
   void loadGameSegments(int segmentIndex, double xPositionOffset) {
     for (final block in segments[segmentIndex]) {
@@ -63,6 +66,8 @@ class EmberQuestGame extends FlameGame
       position: Vector2(128, canvasSize.y - 128),
     );
     world.add(_ember);
+
+    camera.viewport.add(Hud());
   }
 
   @override
