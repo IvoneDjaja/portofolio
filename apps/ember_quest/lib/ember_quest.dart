@@ -97,4 +97,12 @@ class EmberQuestGame extends FlameGame
     camera.viewfinder.anchor = Anchor.topLeft;
     initializeGame(true);
   }
+
+  @override
+  void update(double dt) {
+    if (health <= 0) {
+      overlays.add('GameOver');
+    }
+    super.update(dt);
+  }
 }

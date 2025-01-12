@@ -115,6 +115,16 @@ class EmberPlayer extends SpriteAnimationComponent
     // Prevent ember from jumping to crazy fast as well as descending too fast and
     // crashing through the ground or a platform.
     velocity.y = velocity.y.clamp(-jumpSpeed, terminalVelocity);
+
+    // If ember fell in pit, then game over.
+    if (position.y > game.size.y + size.y) {
+      game.health = 0;
+    }
+
+    if (game.health <= 0) {
+      removeFromParent();
+    }
+
     super.update(dt);
   }
 
