@@ -21,12 +21,7 @@ class Hud extends PositionComponent with HasGameReference<EmberQuestGame> {
   Future<void> onLoad() async {
     _scoreTextComponent = TextComponent(
       text: '${game.starsCollected}',
-      textRenderer: TextPaint(
-        style: const TextStyle(
-          fontSize: 32,
-          color: Color.fromRGBO(10, 10, 10, 1),
-        ),
-      ),
+      textRenderer: TextPaint(),
       anchor: Anchor.center,
       position: Vector2(game.size.x - 60, 20),
     );
