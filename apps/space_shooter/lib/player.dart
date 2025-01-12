@@ -1,10 +1,8 @@
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 import 'package:space_shooter/main.dart';
 
-class Player extends SpriteComponent with HasGameRef<SpaceShooterGame> {
-  static final _paint = Paint()..color = Colors.white;
-
+class Player extends SpriteAnimationComponent
+    with HasGameRef<SpaceShooterGame> {
   Player()
       : super(
           size: Vector2(100, 150),
@@ -15,8 +13,15 @@ class Player extends SpriteComponent with HasGameRef<SpaceShooterGame> {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    sprite = await gameRef.loadSprite('player-sprite.png');
-    position = gameRef.size / 2;
+    animation = await game.loadSpriteAnimation(
+      'player.png',
+      SpriteAnimationData.sequenced(
+        amount: 4,
+        stepTime: .2,
+        textureSize: Vector2(32, 48),
+      ),
+    );
+    position = game.size / 2;
   }
 
   void move(Vector2 delta) {
